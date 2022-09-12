@@ -109,19 +109,25 @@ void menu_usuario(void) {
     printf("\n");
 }
 void cadastrar_usuario(void){
+    char nome[50];
+    char cpf [20];
+    char telefone[20];
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Cadastro de Usuario.                         ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("/// Informe seu nome:                                                       ///\n");
-    printf("/// Sua data de nascimento(dd/mm/ano):                                      ///\n");
-    printf("/// Email:                                                                  ///\n");
+    scanf("%[A-Z a-z]", nome);   
+    getchar();
+    printf("/// CPF:                                                                    ///\n");
+     scanf("%[0-9]",cpf);
+     getchar();
     printf("/// Telefone para Contato:                                                  ///\n");
-    printf("/// Cadastro Realizado Com Sucesso                                          ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+      scanf("%[0-9]",telefone);
+      getchar();
+    printf("\nPressione enter para continuar!                                           ///\n");
+  getchar();
 }
 void editar_usuario(void){
     printf("\n");
