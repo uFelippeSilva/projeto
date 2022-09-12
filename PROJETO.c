@@ -120,52 +120,62 @@ void cadastrar_usuario(void){
     printf("/// Informe seu nome:                                                       ///\n");
     scanf("%[A-Z a-z]", nome);   
     getchar();
-    printf("/// CPF:                                                                    ///\n");
-     scanf("%[0-9]",cpf);
-     getchar();
+    printf("///Informe Seu CPF:                                                         ///\n");
+    scanf("%[0-9]",cpf);
+    getchar();
     printf("/// Telefone para Contato:                                                  ///\n");
-      scanf("%[0-9]",telefone);
-      getchar();
+    scanf("%[0-9]",telefone);
+    getchar();
     printf("\nPressione enter para continuar!                                           ///\n");
-  getchar();
+    getchar();
 }
 void editar_usuario(void){
+    char cpf[20];
+    char nome[50];
+    char telefone[20];
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Editar usuario.                              ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
-    printf("/// Informe Seu Email Antigo:                                               ///\n");
-    printf("/// Digite Sua Nova data de nascimento(dd/mm/ano):                          ///\n");
-    printf("/// Digite Seu novo Email:                                                  ///\n");
-    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");
+    printf("/// Informe Seu CPF:                                                        ///\n");
+    scanf("%[A-Z a-z.,0-9]",cpf);
+    getchar();
+    printf("/// Informe Seu nome:                                                       ///\n"); 
+    scanf("%[A-Z a-z]", nome);  
+    getchar();
+    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");   
+    scanf("%[0-9]",telefone);
+    getchar();
     printf("/// Seus Dados Foram Atualizados.                                           ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
 void delete_usuario(void){
+    char cpf[20];
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Deletar usuario.                             ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
-    printf("/// Informe  Email Que Deseja Excluir::                                     ///\n");
-    printf("/// Realmente deseja deletar seu cadastro?:                                 ///\n");
-    printf("/// Usuario Deletando Com Sucesso.                                          ///\n");
-    printf("///                                                                         ///\n");
+    printf("/// Informe CPF :                                                           ///\n");
+    scanf("%[A-Z a-z.,0-9]",cpf);
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+
     printf("\n");
 
 }
 void pesquisar_usuario(void){
     printf("\n");
+    char cpf[20];
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Pesquisar usuario.                           ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
-    printf("/// Informe  Email Que Deseja Pesquisar::                                   ///\n");
-    printf("/// Realmente deseja deletar seu cadastro?:                                 ///\n");
+    printf("/// Informe  CPF Que Deseja Pesquisar::                                     ///\n");
+    scanf("%[A-Z a-z.,0-9]",cpf);
     printf("/// Este Sao os dados do Usuario pesquisado:                                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
