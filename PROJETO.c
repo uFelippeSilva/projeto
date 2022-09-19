@@ -116,18 +116,17 @@ void cadastrar_usuario(void){
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Cadastro de Usuario.                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
+    printf("/// Informe seu nome:                                                       ///\n");scanf("%[A-Z a-z]",nome);getchar();
+    printf("/// Informe Seu CPF:                                                        ///\n");scanf("%[0-9]",cpf);getchar();
+    printf("/// Telefone para Contato:                                                  ///\n");scanf("%[0-9]",telefone);getchar();
     printf("///                                                                         ///\n");
-    printf("/// Informe seu nome:                                                       ///\n");
-    scanf("%[A-Z a-z]", nome);   
-    getchar();
-    printf("///Informe Seu CPF:                                                         ///\n");
-    scanf("%[0-9]",cpf);
-    getchar();
-    printf("/// Telefone para Contato:                                                  ///\n");
-    scanf("%[0-9]",telefone);
-    getchar();
-    printf("\nPressione enter para continuar!                                           ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                     Pressione enter para continuar!                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     getchar();
 }
 void editar_usuario(void){
@@ -137,18 +136,13 @@ void editar_usuario(void){
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Editar usuario.                              ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe Seu CPF:                                                        ///\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);
-    getchar();
-    printf("/// Informe Seu nome:                                                       ///\n"); 
-    scanf("%[A-Z a-z]", nome);  
-    getchar();
-    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");   
-    scanf("%[0-9]",telefone);
-    getchar();
-    printf("/// Seus Dados Foram Atualizados.                                           ///\n");
+    printf("/// Informe Seu CPF:                                                        ///\n");scanf("%[A-Z a-z.,0-9]",cpf);
+    getchar();printf("///")
+    printf("/// Informe Seu nome:                                                       ///\n");scanf("%[A-Z a-z]", nome);getchar();   
+    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");scanf("%[0-9]",telefone);getchar();  
+    printf("/// Seus Dados Foram Atualizados!                                           ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -158,13 +152,11 @@ void delete_usuario(void){
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Deletar usuario.                             ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe CPF :                                                           ///\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("/// Informe CPF:                                                            ///\n");scanf("%[A-Z a-z.,0-9]",cpf);
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-
     printf("\n");
 
 }
@@ -173,10 +165,9 @@ void pesquisar_usuario(void){
     char cpf[20];
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                            Pesquisar usuario.                           ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe  CPF Que Deseja Pesquisar::                                     ///\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);
+    printf("/// Informe  CPF Que Deseja Pesquisar::                                     ///\n");scanf("%[A-Z a-z.,0-9]",cpf);
     printf("/// Este Sao os dados do Usuario pesquisado:                                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
