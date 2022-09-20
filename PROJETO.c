@@ -1,24 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 //Assinatura das Funções Criadas:
 void tela_principal(void);
 void tela_sobre(void);
 void tela_dupla(void);
 void menu_usuario(void);
 void cadastrar_usuario(void);
-void editar_horario(void);
 void editar_usuario(void);
 void delete_usuario(void);
 void pesquisar_usuario(void);
 void menu_horarios(void);
 void cadastrar_horario(void);
+void editar_horario(void);
 void deletar_horario(void);
-
-
+void menu_animal(void);
+void cadastrar_animal(void);
+void editar_animal(void);
+void pesquisar_animal(void);
+void delete_animal(void);
 // Começo do Programa. 
 int main() {
-
     tela_principal();
     tela_sobre();
     tela_dupla();
@@ -31,11 +32,14 @@ int main() {
     cadastrar_horario();
     editar_horario();
     deletar_horario();
+    menu_animal();
+    cadastrar_animal();
+    editar_animal();
+    delete_animal();
+    pesquisar_animal();
     
-
     return 0;
 }
-
 void tela_principal(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -46,9 +50,9 @@ void tela_principal(void) {
     printf("///                                                                             ///\n");
     printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
-    printf("///           |           1. cadastro Usuario                               |   ///\n");
-    printf("///           |           2. Agendamentos horarios                          |   ///\n");
-    printf("///           |           3. Relatorios                                     |   ///\n");
+    printf("///           |           1. menu Usuario                                   |   ///\n");
+    printf("///           |           2. menu consultas                                 |   ///\n");
+    printf("///           |           3. menu animal                                    |   ///\n");
     printf("///           |           0. Sair                                           |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -101,6 +105,7 @@ void menu_usuario(void) {
     printf("///           |           1. cadastro Usuario                               |   ///\n");
     printf("///           |           2. Editar Usuario                                 |   ///\n");
     printf("///           |           3. Deletar Usuario                                |   ///\n");
+    printf("///           |            4. Pesquisar Usuario                             |   ///\n");
     printf("///           |           4. Pesquisar Usuario                              |   ///\n");
     printf("///           |           0. Sair                                           |   ///\n");
     printf("///           |                                                             |   ///\n");
@@ -144,6 +149,7 @@ void editar_usuario(void){
     printf("///                                                                         ///\n");
     printf("/// Informe Seu CPF:                                                        ///\n");
     printf("/// Informe Seu nome:                                                       ///\n");
+    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");
     printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");  
     printf("/// Seus Dados Foram Atualizados!                                           ///\n");
     printf("///                                                                         ///\n");
@@ -169,7 +175,7 @@ void delete_usuario(void){
     printf("/// Informe CPF:                                                            ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);
+    scanf("%[A-Z a-z.,0-9]",cpf);getchar();
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                     Pressione enter para continuar!                     ///\n");
@@ -190,7 +196,7 @@ void pesquisar_usuario(void){
     printf("/// Este Sao os dados do Usuario pesquisado:                                ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);
+    scanf("%[A-Z a-z.,0-9]",cpf);getchar();
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///                     Pressione enter para continuar!                     ///\n");
@@ -200,7 +206,6 @@ void pesquisar_usuario(void){
     printf("\n");
 
 }
-
 void menu_horarios(void){
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -238,6 +243,8 @@ void cadastrar_horario(void){
     printf("/// Informe Horario da consulta:                                            ///\n");
     printf("/// Informe seu animal(gato,cachorro,etc.):                                 ///\n");
     printf("/// Informe o peso do animal:                                               ///\n");
+    printf("/// Informe Qual serviço deseja:                                            ///\n");
+    printf("/// Consulta Marcada Com Sucesso.                                           ///\n");
     printf("/// Informe Qual servico deseja:                                            ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -311,8 +318,137 @@ void deletar_horario(void){
     printf("///                     Pressione enter para continuar!                     ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+}
+void menu_animal(void) {
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                             ///\n");
+    printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
+    printf("///                                                                             ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                             ///\n");
+    printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
+    printf("///           |                                                             |   ///\n");
+    printf("///           |           1. cadastrar Animal                               |   ///\n");
+    printf("///           |           2. Editar    Animal                               |   ///\n");
+    printf("///           |           3. Deletar   Animal                               |   ///\n");
+    printf("///           |           4. Pesquisar Animal                               |   ///\n");
+    printf("///           |           0. Sair                                           |   ///\n");
+    printf("///           |                                                             |   ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
+    printf("///                                                                             ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+
+
+}
+void cadastrar_animal(void){
+    char cpf [20];
+    char id[20];
+    char animal[20];
+    char cor[20];
+    char peso[20];
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                            Cadastro de Animal.                          ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("/// Informe CPF do Dono do Animal:                                          ///\n");
+    printf("/// Informe ID unico Que Deseja pro Animal:                                 ///\n");
+    printf("/// Informe Especie do Animal:                                              ///\n");
+    printf("/// Informe Cor do Animal:                                                  ///\n");
+    printf("/// Informe Peso do Animal:                                                 ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%[0-9]",cpf);getchar();
+    scanf("%[0-9]",id);getchar();
+    scanf("%[A-Z a-z]",animal);getchar();
+    scanf("%[A-Z a-z]",cor);getchar();
+    scanf("%[0-9]",peso);getchar();
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                     Pressione enter para continuar!                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
+}
+
+void editar_animal(void){
+    char cpf[20];
+    char id[20];
+    char novo_peso[20];
+    char nova_cor[20];
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                            Editar Animal.                              ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("/// Informe CPF Do Dono Do Animal:                                          ///\n");
+    printf("/// Informe ID Unico do Animal:                                             ///\n");
+    printf("/// Informe Novo Peso do animal:                                            ///\n");  
+    printf("/// Informe Nova Cor do Animal:                                             ///\n");
+    printf("/// Seus Dados Foram Atualizados!                                           ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%[0-9]",cpf);getchar();
+    scanf("%[0-9]",id);getchar();
+    scanf("%[0-9]",novo_peso);getchar();
+    scanf("%[A-Z a-z]",nova_cor);getchar();
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                     Pressione enter para continuar!                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
+    printf("\n");
+}
+void pesquisar_animal(void){
+    printf("\n");
+    char cpf[20];
+    char id[20];
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                            Pesquisar Animal.                           ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("/// Informe  CPF Do Dono do Animal:                                         ///\n");
+    printf("/// Informe  ID Unico Do Animal:                                            ///\n");
+    printf("/// Este Sao os dados do Animal pesquisado:                                 ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%[0-9]",cpf);getchar();
+    scanf("%[0-9]",id);getchar();
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                     Pressione enter para continuar!                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
     getchar();
     printf("\n");
 
+}
+void delete_animal(void){
+    char cpf[20];
+    char id[20];
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                            Deletar Animal.                             ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("/// Informe CPF Do Dono do Animal:                                          ///\n");
+    printf("/// Informe ID Do Animal:                                                   ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    scanf("%[0-9]",cpf);getchar();
+    scanf("%[0-9]",id);getchar();
+    printf("/// Animal Deletado Com Sucesso.\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                     Pressione enter para continuar!                     ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
+    printf("\n");
 
 }
