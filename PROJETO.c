@@ -1,46 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 //Assinatura das Funções Criadas:
-void tela_principal(void);
+char tela_principal(void);
 void tela_sobre(void);
 void tela_dupla(void);
-void menu_usuario(void);
+char menu_usuario(void);
+void modulo_usuario(void);
 void cadastrar_usuario(void);
 void editar_usuario(void);
 void delete_usuario(void);
 void pesquisar_usuario(void);
-void menu_horarios(void);
+char menu_horarios(void);
 void cadastrar_horario(void);
 void editar_horario(void);
 void deletar_horario(void);
-void menu_animal(void);
+char menu_animal(void);
 void cadastrar_animal(void);
 void editar_animal(void);
 void pesquisar_animal(void);
 void delete_animal(void);
-// Começo do Programa. 
-int main() {
-    tela_principal();
-    tela_sobre();
-    tela_dupla();
-    menu_usuario();
-    cadastrar_usuario();
-    editar_usuario();
-    delete_usuario();
-    pesquisar_usuario();
-    menu_horarios();
-    cadastrar_horario();
-    editar_horario();
-    deletar_horario();
-    menu_animal();
-    cadastrar_animal();
-    editar_animal();
-    delete_animal();
-    pesquisar_animal();
-    
+// Começo do Programa.
+int main(void) {
+    char op;
+    do {
+        op = tela_principal();
+        switch(op) {
+            case '1':   modulo_usuario();
+                        break;
+            case '2':   menu_horarios();
+                        break;
+            case '3':   menu_animal();
+                        break;
+        } 	
+    } while (op != '0');
     return 0;
 }
-void tela_principal(void) {
+char tela_principal(void) {
+    char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -53,12 +49,17 @@ void tela_principal(void) {
     printf("///           |           1. menu Usuario                                   |   ///\n");
     printf("///           |           2. menu consultas                                 |   ///\n");
     printf("///           |           3. menu animal                                    |   ///\n");
+    printf("///           |           4. relatorioa                                     |   ///\n");
     printf("///           |           0. Sair                                           |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("escolha oque deseja:\n");
+    scanf("%d",&op);getchar();
     printf("\n");
+
+    return op;
     
 }
 void tela_sobre(void) {
@@ -83,16 +84,17 @@ void tela_dupla(void) {
     printf("///           |   Este projeto exemplo foi desenvolvido por:            |       ///\n");
     printf("///           |                                                         |       ///\n");
     printf("///           |    Davi Natan Vieira de oliveira                        |       ///\n");
-    printf("///           |     Matricula:20220055255                               |       ///\n");
+    printf("///           |    Matricula:20220055255                                |       ///\n");
     printf("///           |    Felippe da Silva Guedes                              |       ///\n");
-    printf("///           |     Matricula:20220068057                               |       ///\n");
+    printf("///           |    Matricula:20220068057                                |       ///\n");
     printf("///           |                                                         |       ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
     printf("///                                                                             ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
 } 
-void menu_usuario(void) {
+char menu_usuario(void) {
+    char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -105,14 +107,33 @@ void menu_usuario(void) {
     printf("///           |           1. cadastro Usuario                               |   ///\n");
     printf("///           |           2. Editar Usuario                                 |   ///\n");
     printf("///           |           3. Deletar Usuario                                |   ///\n");
-    printf("///           |            4. Pesquisar Usuario                             |   ///\n");
     printf("///           |           4. Pesquisar Usuario                              |   ///\n");
     printf("///           |           0. Sair                                           |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("escolha oque deseja:\n");
+    scanf("%c",&op);getchar();
     printf("\n");
+
+    return op;
+}
+void modulo_usuario(void) {
+    char op;
+    do {
+        op = menu_usuario();
+        switch(op) {
+            case '1': 	cadastrar_usuario();
+                        break;
+            case '2': 	editar_usuario();
+                        break;
+            case '3': 	delete_usuario();
+                        break;
+            case '4': 	pesquisar_usuario();
+                        break;
+        } 		
+    } while (op != '0');
 }
 void cadastrar_usuario(void){
     char nome[50];
@@ -206,7 +227,8 @@ void pesquisar_usuario(void){
     printf("\n");
 
 }
-void menu_horarios(void){
+char menu_horarios(void){
+    char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -225,6 +247,10 @@ void menu_horarios(void){
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("escolha oque deseja:\n");
+    scanf("%c",&op);getchar();
+
+    return op;
 
 }
 
@@ -320,7 +346,8 @@ void deletar_horario(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
-void menu_animal(void) {
+char menu_animal(void) {
+    char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -340,7 +367,10 @@ void menu_animal(void) {
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    printf("escolha oque deseja:\n");
+    scanf("%c",&op);getchar();
 
+    return op;
 
 }
 void cadastrar_animal(void){
@@ -433,7 +463,7 @@ void delete_animal(void){
     char id[20];
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Deletar Animal.                             ///\n");
+    printf("///                            Deletar Animal.                              ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("/// Informe CPF Do Dono do Animal:                                          ///\n");
