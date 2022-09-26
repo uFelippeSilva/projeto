@@ -3,10 +3,13 @@
 #include <unistd.h>
 //Assinatura das Funções Criadas:
 char tela_principal(void);
+//Funcoes Mod Sobre.
+char menu_sobre(void);
+void modulo_sobre(void);
 void tela_sobre(void);
 void tela_dupla(void);
 
-//Funçoes Mod Usuario
+//Funçoes Mod Usuario.
 void modulo_usuario(void);
 char menu_usuario(void);
 void cadastrar_usuario(void);
@@ -14,14 +17,14 @@ void editar_usuario(void);
 void delete_usuario(void);
 void pesquisar_usuario(void);
 
-//Funçoes Mod Horarios
+//Funçoes Mod Horarios.
 void modulo_horarios(void);
 char menu_horarios(void);
 void cadastrar_horario(void);
 void editar_horario(void);
 void deletar_horario(void);
 
-//Funçoes Mod Animal
+//Funçoes Mod Animal.
 void modulo_animal(void);
 char menu_animal(void);
 void cadastrar_animal(void);
@@ -29,10 +32,10 @@ void editar_animal(void);
 void pesquisar_animal(void);
 void delete_animal(void);
 
-//Funcoes Mod Relatorios
+//Funcoes Mod Relatorios.
 void modulo_relatorio(void);
 char menu_relatorio(void);
-void relatorio_usuarios(void);
+void relatorio_usuario(void);
 void relatorio_animal(void);
 
 // Começo do Programa.
@@ -47,6 +50,10 @@ int main(void) {
                           break;
             case '3':     modulo_animal();
                           break;
+            case '4':     modulo_relatorio();
+                          break;      
+            case '5':     modulo_sobre();    
+                          break;                        
             
         } 	
     } while (opcao != '0');
@@ -70,6 +77,7 @@ char tela_principal(void) {
     printf("///           |           2. menu consultas                                 |   ///\n");
     printf("///           |           3. menu animal                                    |   ///\n");
     printf("///           |           4. menu relatiorios                               |   ///\n");
+    printf("///           |           5. menu sobre Projeto Criadores                   |   ///\n");
     printf("///           |           0. Finalizar Programa                             |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -85,6 +93,46 @@ char tela_principal(void) {
     return op;
     
 }
+void modulo_sobre(void) {
+    char opcao;
+    do {
+        opcao = menu_sobre();
+        switch(opcao) {
+            case '1': 	tela_dupla();
+                        break;
+            case '2': 	tela_sobre();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
+
+char menu_sobre(void) {
+    char op;
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                             ///\n");
+    printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
+    printf("///                                                                             ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                             ///\n");
+    printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
+    printf("///           |                                                             |   ///\n");
+    printf("///           |           1. Dupla Do Projeto                               |   ///\n");
+    printf("///           |           2. Sobre o Projeto                                |   ///\n");
+    printf("///           |           0. Voltar Menu Principal                          |   ///\n");
+    printf("///           |                                                             |   ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
+    printf("///                                                                             ///\n");
+     printf("escolha oque deseja:\n");
+    scanf("%c",&op);
+    getchar();
+    printf("\n");
+    printf("\t\t\t<<< ... Loading ... >>>\n");
+    sleep(1);
+
+    return op;
+}
+
 void tela_sobre(void) {
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -148,7 +196,7 @@ char menu_usuario(void) {
     printf("///           |           2. Editar Usuario                                 |   ///\n");
     printf("///           |           3. Deletar Usuario                                |   ///\n");
     printf("///           |           4. Pesquisar Usuario                              |   ///\n");
-    printf("///           |           0. Sair                                           |   ///\n");
+    printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
@@ -198,7 +246,6 @@ void editar_usuario(void){
     printf("///                                                                         ///\n");
     printf("/// Informe Seu CPF:                                                        ///\n");
     printf("/// Informe Seu nome:                                                       ///\n");
-    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");
     printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");  
     printf("/// Seus Dados Foram Atualizados!                                           ///\n");
     printf("///                                                                         ///\n");
@@ -284,7 +331,7 @@ char menu_horarios(void){
     printf("///           |           1. Cadastrar Horario                              |   ///\n");
     printf("///           |           2. Editar Horario                                 |   ///\n");
     printf("///           |           3. Deletar Horario                                |   ///\n");
-    printf("///           |           0. Sair                                           |   ///\n");
+    printf("///           |           0. Voltar Menu Principal                          |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
@@ -424,7 +471,7 @@ char menu_animal(void) {
     printf("///           |           2. Editar    Animal                               |   ///\n");
     printf("///           |           3. Deletar   Animal                               |   ///\n");
     printf("///           |           4. Pesquisar Animal                               |   ///\n");
-    printf("///           |           0. Sair                                           |   ///\n");
+    printf("///           |           0. Voltar Menu Principal                          |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
@@ -594,7 +641,7 @@ void relatorio_usuario(void) {
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
     printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
-    printf("///           |     Relatorio Animal                                    |       ///\n");
+    printf("///           |     Relatorio Usuario                                    |       ///\n");
     printf("///           |     Estara Disponivel em Breve                          |       ///\n");
     printf("///           |     Quando Nosso Professor                              |       ///\n");
     printf("///           |     Flavius Gorgonio                                    |       ///\n");
@@ -613,7 +660,7 @@ void relatorio_animal(void) {
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
     printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
-    printf("///           |     Relatorio de Usuario                                |       ///\n");
+    printf("///           |     Relatorio de Animal                                 |       ///\n");
     printf("///           |     Estara Disponivel em Breve                          |       ///\n");
     printf("///           |     Quando Nosso Professor                              |       ///\n");
     printf("///           |     Flavius Gorgonio                                    |       ///\n");
