@@ -1,19 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 //Assinatura das Funções Criadas:
 char tela_principal(void);
 void tela_sobre(void);
 void tela_dupla(void);
-char menu_usuario(void);
+
+//Funçoes Mod Usuario
 void modulo_usuario(void);
+char menu_usuario(void);
 void cadastrar_usuario(void);
 void editar_usuario(void);
 void delete_usuario(void);
 void pesquisar_usuario(void);
+
+//Funçoes Mod Horarios
+void modulo_horarios(void);
 char menu_horarios(void);
 void cadastrar_horario(void);
 void editar_horario(void);
 void deletar_horario(void);
+
+//Funçoes Mod Animal
+void modulo_animal(void);
 char menu_animal(void);
 void cadastrar_animal(void);
 void editar_animal(void);
@@ -21,22 +30,26 @@ void pesquisar_animal(void);
 void delete_animal(void);
 // Começo do Programa.
 int main(void) {
-    char op;
+    char opcao;
     do {
-        op = tela_principal();
-        switch(op) {
-            case '1':   modulo_usuario();
-                        break;
-            case '2':   menu_horarios();
-                        break;
-            case '3':   menu_animal();
-                        break;
+        opcao = tela_principal();
+        switch(opcao) {
+            case '1':     modulo_usuario();
+                          break;
+            case '2':     modulo_horarios();
+                          break;
+            case '3':     modulo_animal();
+                          break;
+            
         } 	
-    } while (op != '0');
+    } while (opcao != '0');
     return 0;
 }
+
+
+
 char tela_principal(void) {
-    char op;
+    int op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -46,17 +59,20 @@ char tela_principal(void) {
     printf("///                                                                             ///\n");
     printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
-    printf("///           |           1. menu Usuario                                   |   ///\n");
+    printf("///           |           1. menu usuario                                   |   ///\n");
     printf("///           |           2. menu consultas                                 |   ///\n");
     printf("///           |           3. menu animal                                    |   ///\n");
-    printf("///           |           4. relatorioa                                     |   ///\n");
-    printf("///           |           0. Sair                                           |   ///\n");
+    printf("///           |           4. menu relatiorios                               |   ///\n");
+    printf("///           |           0. Finalizar Programa                             |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("escolha oque deseja:\n");
-    scanf("%d",&op);getchar();
+    scanf("%[0-9]",&op);
+    getchar();
+    printf("\t\t\t<<<  Loading  >>>\n");
+    sleep(1);
     printf("\n");
 
     return op;
@@ -93,6 +109,23 @@ void tela_dupla(void) {
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
 } 
+
+void modulo_usuario(void) {
+    char opcao;
+    do {
+        opcao = menu_usuario();
+        switch(opcao) {
+            case '1': 	cadastrar_usuario();
+                        break;
+            case '2': 	editar_usuario();
+                        break;
+            case '3': 	delete_usuario();
+                        break;
+            case '4': 	pesquisar_usuario();
+                        break;
+        } 		
+    } while (opcao != '0');
+}
 char menu_usuario(void) {
     char op;
     printf("\n");
@@ -114,27 +147,15 @@ char menu_usuario(void) {
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("escolha oque deseja:\n");
-    scanf("%c",&op);getchar();
+    scanf("%c",&op);
+    getchar();
     printf("\n");
+    printf("\t\t\t<<< ... Loading ... >>>\n");
+    sleep(1);
 
     return op;
 }
-void modulo_usuario(void) {
-    char op;
-    do {
-        op = menu_usuario();
-        switch(op) {
-            case '1': 	cadastrar_usuario();
-                        break;
-            case '2': 	editar_usuario();
-                        break;
-            case '3': 	delete_usuario();
-                        break;
-            case '4': 	pesquisar_usuario();
-                        break;
-        } 		
-    } while (op != '0');
-}
+
 void cadastrar_usuario(void){
     char nome[50];
     char cpf [20];
@@ -225,7 +246,22 @@ void pesquisar_usuario(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     getchar();
     printf("\n");
+}
 
+
+void modulo_horarios(void) {
+    char opcao;
+    do {
+        opcao = menu_horarios();
+        switch(opcao) {
+            case '1': 	cadastrar_horario();
+                        break;
+            case '2': 	editar_horario();
+                        break;
+            case '3': 	deletar_horario();
+                        break;
+        } 		
+    } while (opcao != '0');
 }
 char menu_horarios(void){
     char op;
@@ -248,7 +284,10 @@ char menu_horarios(void){
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("escolha oque deseja:\n");
-    scanf("%c",&op);getchar();
+    scanf("%c",&op);
+    getchar();
+    printf("\t\t\t<<< ... Loading ... >>>\n");
+    sleep(1);
 
     return op;
 
@@ -346,6 +385,23 @@ void deletar_horario(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 }
+void modulo_animal(void) {
+    char op;
+    do {
+        op = menu_animal();
+        switch(op) {
+            case '1': 	cadastrar_animal();
+                        break;
+            case '2': 	editar_animal();
+                        break;
+            case '3': 	delete_animal();
+                        break;
+            case '4': 	pesquisar_animal();
+                        break;
+        } 		
+    } while (op != '0');
+}
+
 char menu_animal(void) {
     char op;
     printf("\n");
@@ -368,8 +424,10 @@ char menu_animal(void) {
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     printf("escolha oque deseja:\n");
-    scanf("%c",&op);getchar();
-
+    scanf("%c",&op);
+    getchar();
+    printf("\t\t\t<<< ... Loading ... >>>\n");
+    sleep(1);
     return op;
 
 }
