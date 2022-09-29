@@ -84,7 +84,7 @@ char tela_principal(void) {
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("escolha oque deseja:\n");
-    scanf("%[0-9]",&op);
+    scanf("%c", &op);
     getchar();
     printf("\t\t\t<<<  Loading  >>>\n");
     sleep(1);
