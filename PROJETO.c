@@ -6,6 +6,7 @@
 #include "modUsuario.h"
 #include "modHorarios.h"
 #include "modRelatorios.h"
+#include "validacaoProjeto.h"
 
 //Compile os .h -> gcc -c -Wall *.h
 //Compile os .c -> gcc -c -Wall *.c
