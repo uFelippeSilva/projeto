@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "modUsuario.h"
+#include "validacaoProjeto.h"
 void modulo_usuario(void) {
     char opcao;
     do {

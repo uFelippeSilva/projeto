@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "modAnimal.h"
+#include "validacaoProjeto.h"
 void modulo_animal(void) {
     char op;
     do {
