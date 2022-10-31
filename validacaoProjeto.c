@@ -1,5 +1,49 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#include "validacaoProjeto.h"
+
+int isDigit(char n){
+    if(n >= '0' && n <= '9'){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+//Credito a Isa Kaillany e Felipe Souza
+int validaTelefone(char *telefone)
+{
+  int tam = strlen(telefone);
+  int digito = 0, i; 
+  
+  if (tam != 11) //verifica o tamanho
+  {
+    return 1;
+  }
+  else
+  {
+    for (i = 0; i < tam; i++)
+      {
+        char c = telefone[i];
+  
+        if (isdigit(c)) //verifica se é dígito
+        {
+          digito++;
+        }
+        else
+        {
+          return 1;
+        }
+      }
+    if (digito == 0) //verifica se tem dígito
+    {
+      return 1;
+    }
+  }
+  return 0;
+}
+
 int validaData(int dia,int mes,int ano){
     
 
