@@ -1,2 +1,5 @@
 ////Funçoes Validaçao do Projeto.
-int validaData(int dd,int mm, int aa);
+int validaData(int dia,int mes, int ano);
+int validaCpf(char *cpf);
+int validaNome(char *nome);
+int ehLetra(char c);
