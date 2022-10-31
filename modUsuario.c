@@ -21,6 +21,7 @@ void modulo_usuario(void) {
                         break;            
         } 		
     } while (opcao != '0');
+    free(fulano);
 }
 char menu_usuario(void) {
     char op;
