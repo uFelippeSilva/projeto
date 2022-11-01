@@ -4,11 +4,13 @@
 #include "modAnimal.h"
 #include "validacaoProjeto.h"
 void modulo_animal(void) {
+    Animal* pet;
+
     char op;
     do {
         op = menu_animal();
         switch(op) {
-            case '1': 	cadastrar_animal();
+            case '1': 	pet=cadastroanimal();
                         break;
             case '2': 	editar_animal();
                         break;
@@ -18,6 +20,7 @@ void modulo_animal(void) {
                         break;
         } 		
     } while (op != '0');
+    free(pet);
 }
 
 char menu_animal(void) {
@@ -48,36 +51,32 @@ char menu_animal(void) {
     sleep(1);
     return op;
 
+
 }
-void cadastrar_animal(void){
-    char cpf [20];
-    char id[20];
-    char animal[20];
-    char cor[20];
-    char peso[20];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Cadastro de Animal.                          ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe CPF do Dono do Animal:                                          ///\n");
-    printf("/// Informe ID unico Que Deseja pro Animal:                                 ///\n");
-    printf("/// Informe Especie do Animal:                                              ///\n");
-    printf("/// Informe Cor do Animal:                                                  ///\n");
-    printf("/// Informe Peso do Animal:                                                 ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[0-9]",cpf);getchar();
-    scanf("%[0-9]",id);getchar();
-    scanf("%[A-Z a-z]",animal);getchar();
-    scanf("%[A-Z a-z]",cor);getchar();
-    scanf("%[0-9]",peso);getchar();
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    getchar();
+Animal* cadastroanimal() 
+{
+ Animal* anm;
+ anm = (Animal*) malloc(sizeof(Animal));
+ do
+    {
+        printf(" | Informe o cpf do usuario: ");
+        scanf(" %20[^\n]", anm->cpf);
+        getchar();
+        
+    } while (!validaCpf(anm->cpf));
+printf (" Innforme a Raca do  animal:");
+scanf(" %20[^\n]", anm->animal);
+printf("Informe Cor do Animal:");
+scanf(" %20[^\n]", anm->cor);
+do
+    {
+        printf(" | Informe o ID Unico Que Deseja Para o Animal: ");
+        scanf(" %15[^\n]", anm->id);
+        getchar();
+        
+    } while (!validaTelefone(anm->id));
+return anm;
+
 }
 
 void editar_animal(void){
