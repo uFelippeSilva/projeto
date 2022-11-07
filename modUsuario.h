@@ -11,6 +11,7 @@ struct usuario {
   char nome[51];
   char cpf[20];
   char telefone[15];
+  char status;
 };
 
 void exibeUsuario(const Usuario*);
