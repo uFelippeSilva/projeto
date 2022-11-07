@@ -75,25 +75,27 @@ int validaData(int dia,int mes,int ano){
                 return 0;
            }
 }
-int ehLetra(char c) {
- if (c>='A' && c<='Z') {
- return 1;
- }
- else if (c>='a' && c<='z') {
- return 1;
- }
- else {
- return 0;
- }
-}
 
-int validaNome(char* nome) {
-    for (int i=0; nome[i]!='\0'; i++) {
-        if (!ehLetra(nome[i])) {
+//
+
+int validaPalavra(char *palavra) {
+    
+    int i = 0;
+
+    while (palavra[i] != '\0') {
+        if (((palavra[i] >= 'a') && (palavra[i] <= 'z')) || (palavra[i] == ' ')) {
+            i = i + 1;
+        }
+        else if ((palavra[i] >= 'A') && (palavra[i] <= 'Z')) {
+            i = i + 1;
+        }
+        else {
             return 0;
         }
+
     }
     return 1;
+
 }
 
 

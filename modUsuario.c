@@ -67,7 +67,7 @@ Usuario* cadastroUsuario() {
         scanf(" %51[^\n]", usu->nome);
         getchar();
         
-    } while (!validaNome(usu->nome));
+    } while (!validaPalavra(usu->nome));
 
 do
     {
@@ -111,7 +111,6 @@ void gravaUsuario(Usuario* usu) {
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
-    exit(1);
   }
   fwrite(usu, sizeof(Usuario), 1, fp);
   fclose(fp);
