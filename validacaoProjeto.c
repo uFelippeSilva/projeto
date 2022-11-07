@@ -19,7 +19,7 @@ int validaTelefone(char *telefone)
   
   if (tam != 11) //verifica o tamanho
   {
-    return 1;
+    return 0;
   }
   else
   {
@@ -33,15 +33,15 @@ int validaTelefone(char *telefone)
         }
         else
         {
-          return 1;
+          return 0;
         }
       }
     if (digito == 0) //verifica se tem dígito
     {
-      return 1;
+      return 0;
     }
   }
-  return 0;
+  return 1;
 }
 
 int validaData(int dia,int mes,int ano){

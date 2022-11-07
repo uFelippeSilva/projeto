@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "modUsuario.h"
 #include "validacaoProjeto.h"
@@ -10,6 +11,8 @@ void modulo_usuario(void) {
         opcao = menu_usuario();
         switch(opcao) {
             case '1': 	fulano = cadastroUsuario();
+                        gravaUsuario(fulano);
+                        free(fulano);
                         break;
             case '2': 	editar_usuario();
                         break;
@@ -81,18 +84,39 @@ do
         getchar();
         
     } while (!validaTelefone(usu->telefone));
+    usu->status = 'a';
 
 return usu;
 }
 void exibeUsuario(const Usuario* usu) {
+    char situacao[20];
     printf("\n= = = Usuario Cadastrado = = =\n");
     printf("Nome do Usuario: %s\n", usu->nome);
     printf("CPF do Usuario: %s\n", usu->cpf);
-     printf("Telefone do Usuario: %s\n", usu->telefone);
+    printf("Telefone do Usuario: %s\n", usu->telefone);
+    if (usu->status == 'a'){
+    strcpy(situacao, "cadastrado");
+    } else if (usu->status == 'x') {
+    strcpy(situacao, "nao cadastrado");
+    } else {
+    strcpy(situacao, "Não informada");
+    }
+    printf("Situação do usuario: %s\n", situacao);
 
-    
-   
 }
+
+void gravaUsuario(Usuario* usu) {
+  FILE* fp;
+  fp = fopen("usuarios.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  fwrite(usu, sizeof(Usuario), 1, fp);
+  fclose(fp);
+}
+
 void editar_usuario(void){
     char cpf[20];
     char nome[50];
