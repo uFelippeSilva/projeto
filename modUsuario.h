@@ -10,12 +10,11 @@ struct usuario {
 //Funçoes Mod Usuario.
 void modulo_usuario(void);
 char menu_usuario(void);
-void editar_usuario(void);
-void delete_usuario(void);
-void pesquisar_usuario(void);
+void cadastrarusuario(void);
+void buscausuario(void);
+void deletarusuario(void);
+void exibeusuario(Usuario* usu);
 void gravaUsuario(Usuario*);
+void listaUsuarios(void);
+void atualizarusuario(void);
 
-
-
-void exibeUsuario(const Usuario*);
-Usuario* cadastroUsuario();

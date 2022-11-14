@@ -5,26 +5,22 @@
 #include "modUsuario.h"
 #include "validacaoProjeto.h"
 void modulo_usuario(void) {
-    Usuario* fulano;
     char opcao;
     do {
         opcao = menu_usuario();
         switch(opcao) {
-            case '1': 	fulano = cadastroUsuario();
-                        gravaUsuario(fulano);
-                        free(fulano);
+            case '1': 	cadastrarusuario(); //Cadastrar Usuario!.
                         break;
-            case '2': 	editar_usuario();
+            case '2': 	buscausuario(); //Pesquisar Por um Usuario Cadastrado!.
                         break;
-            case '3': 	delete_usuario();
+            case '3': 	atualizarusuario(); //Parte de Atualizar um usuario desejado.
                         break;
-            case '4': 	pesquisar_usuario();
+            case '4': 	deletarusuario(); //Deletando Usuario de Maneira Logica.
                         break;
-            case '5': 	exibeUsuario(fulano);
+            case '5': 	listaUsuarios(); //Ira Listar Os Usuario Cadastrado no Sistema.!
                         break;            
         } 		
     } while (opcao != '0');
-    free(fulano);
 }
 char menu_usuario(void) {
     char op;
@@ -37,11 +33,11 @@ char menu_usuario(void) {
     printf("///                                                                             ///\n");
     printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
-    printf("///           |           1. cadastro Usuario                               |   ///\n");
-    printf("///           |           2. Editar Usuario                                 |   ///\n");
-    printf("///           |           3. Deletar Usuario                                |   ///\n");
-    printf("///           |           4. Pesquisar Usuario                              |   ///\n");
-    printf("///           |           5. Usuarios Cadastrados                           |   ///\n");
+    printf("///           |           1. Cadastrar Usuario                              |   ///\n");
+    printf("///           |           2. Procurar Usuario                               |   ///\n");
+    printf("///           |           3. Editar Usuario                                 |   ///\n");
+    printf("///           |           4. Deletar Usuario                                |   ///\n");
+    printf("///           |           5. Listar Usuarios                                |   ///\n");
     printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -57,19 +53,24 @@ char menu_usuario(void) {
     return op;
 }
 
-Usuario* cadastroUsuario() {
- Usuario* usu;
- usu = (Usuario*) malloc(sizeof(Usuario));
+void cadastrarusuario(void){
+  Usuario* usu;
+  usu = (Usuario*) malloc(sizeof(Usuario));
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Cadastro Usuario                        | \n");
+    printf(" | ========================================================= | \n");
+    printf(" |                                                           | \n");
 
   do
     {
-        printf(" | Informe o nome do usuario: ");
-        scanf(" %51[^\n]", usu->nome);
-        getchar();
+      printf(" | Informe o nome do usuario: ");
+      scanf(" %51[^\n]", usu->nome);
+      getchar();
         
     } while (!validaPalavra(usu->nome));
 
-do
+  do
     {
         printf(" | Informe o cpf do usuario: ");
         scanf(" %20[^\n]", usu->cpf);
@@ -77,34 +78,177 @@ do
         
     } while (!validaCpf(usu->cpf));
 
-do
+  do
+    {
+        printf(" | Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
+        scanf(" %15[^\n]", usu->telefone);
+        getchar();
+        
+    } while (!validaTelefone(usu->telefone));
+    usu->status = 'a';
+    gravaUsuario(usu);
+    free(usu);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+
+}
+void buscausuario(void){
+
+  FILE* fp;
+  Usuario* usu;
+  int achou;
+  char cpf_busca[20];
+  fp = fopen("usuarios.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+  printf("\n = Buscar Usuario = \n"); 
+  printf("Informe CPF: "); 
+  scanf(" %19[^\n]", cpf_busca);
+  usu = (Usuario*) malloc(sizeof(Usuario));
+  achou = 0;
+  while((!achou) && (fread(usu,sizeof(Usuario), 1, fp))) {
+    if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status != 'x')){
+      achou =1;
+    }
+
+
+}
+if (achou) {
+    exibeusuario(usu);
+}else {
+    printf("Os dados do usuário  não foram encontrados\n");
+}
+fclose(fp);
+free(usu);
+printf(" | Pressione qualquer tecla para sair.... ");
+getchar();
+
+}
+void atualizarusuario(void){
+   FILE* fp;
+    Usuario* usu;
+    int achou;
+    char resp;
+    char cpf_busca[20];
+    usu = (Usuario*) malloc(sizeof(Usuario));
+    achou = 0;
+    fp = fopen("usuarios.dat", "r+b");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Não é possível continuar o programa...\n");
+        exit(1);
+  }
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ------------------- Atualizar usuario ------------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" | Digite o CPF do usuario cadastrado: ");
+    scanf("%s", cpf_busca);
+    getchar();
+    while((!achou) && (fread(usu, sizeof(Usuario), 1, fp))) {
+    if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status == 'a')) {
+     achou = 1;
+   }
+  
+}
+if (achou) {
+        exibeusuario(usu);
+        printf(" Deseja realmente editar este usuario? [s/n] ");
+        scanf("%c", &resp);
+        getchar();
+        if (resp == 's' || resp == 'S') {
+        do
+    {
+        printf(" | Informe o nome do usuario: ");
+        scanf(" %51[^\n]", usu->nome);
+        getchar();
+        
+    } while (!validaPalavra(usu->nome));
+
+  do
+    {
+        printf(" | Informe o cpf do usuario: ");
+        scanf(" %20[^\n]", usu->cpf);
+        getchar();
+        
+    } while (!validaCpf(usu->cpf));
+
+  do
     {
         printf(" | Informe o Telefone do usuario: ");
         scanf(" %15[^\n]", usu->telefone);
         getchar();
         
     } while (!validaTelefone(usu->telefone));
-    usu->status = 'a';
-
-return usu;
-}
-void exibeUsuario(const Usuario* usu) {
-    char situacao[20];
-    printf("\n= = = Usuario Cadastrado = = =\n");
-    printf("Nome do Usuario: %s\n", usu->nome);
-    printf("CPF do Usuario: %s\n", usu->cpf);
-    printf("Telefone do Usuario: %s\n", usu->telefone);
-    if (usu->status == 'a'){
-    strcpy(situacao, "cadastrado");
-    } else if (usu->status == 'x') {
-    strcpy(situacao, "nao cadastrado");
+        usu->status = 'a';
+        fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
+        fwrite(usu, sizeof(Usuario), 1, fp);
+        printf("\nUsuario editado com sucesso!!!\n");
+        gravaUsuario(usu);
+        printf(" Pressione qualquer tecla para sair... ");
+        getchar();
     } else {
-    strcpy(situacao, "Não informada");
+        printf("Tudo bem, os dados não foram alterados!");
     }
-    printf("Situação do usuario: %s\n", situacao);
+  
+   } 
+free(usu);
+fclose(fp);
 
+}      
+void deletarusuario(void){
+  FILE* fp;
+    Usuario* usu;
+    int achou;
+    char resp;
+    char cpf_busca[20];
+    fp = fopen("usuarios.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    usu = (Usuario*) malloc(sizeof(Usuario));
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ---------------------- Excluir usuario ----------------------- | \n");
+    printf(" |                                                                | \n");
+    printf(" | Informe o CPF do usuário que você quer excluir: ");
+    scanf("%s", cpf_busca);
+    getchar();
+    achou=0;
+    while ((!achou) && (fread(usu, sizeof(Usuario), 1, fp))){
+    if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status == 'a')){
+        achou = 1;
+        }
+    }
+    if (achou){
+        exibeusuario(usu);
+        printf("Deseja realmente excluir os dados deste usuario? (s/n)");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            usu->status = 'x';
+            fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
+            fwrite(usu, sizeof(Usuario), 1, fp);
+            printf("\nUsuário excluído com sucesso!");
+            gravaUsuario(usu);
+            printf("| Pressione qualquer tecla para sair... ");
+            getchar();
+        }else{
+            printf("\nTudo bem, os dados não foram alterados!");
+        }
+        }else{
+        printf("O usuário não foi encontrado!");
+    }
+    free(usu);
+    fclose(fp);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    
 }
-
 void gravaUsuario(Usuario* usu) {
   FILE* fp;
   fp = fopen("usuarios.dat", "ab");
@@ -115,70 +259,38 @@ void gravaUsuario(Usuario* usu) {
   fwrite(usu, sizeof(Usuario), 1, fp);
   fclose(fp);
 }
-
-void editar_usuario(void){
-    char cpf[20];
-    char nome[50];
-    char telefone[20];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Editar usuario.                              ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe Seu CPF:                                                        ///\n");
-    printf("/// Informe Seu nome:                                                       ///\n");
-    printf("/// Digite Seu Novo Telefone para Contato:                                  ///\n");  
-    printf("/// Seus Dados Foram Atualizados!                                           ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);getchar();
-    scanf("%[A-Z a-z]",nome);getchar();
-    scanf("%[0-9]",telefone);getchar(); 
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    getchar();
-    printf("\n");
+void listaUsuarios(void) {
+  FILE* fp;
+  Usuario* usu;
+  printf("\n = Lista de Alunos = \n"); 
+  usu = (Usuario*) malloc(sizeof(Usuario));
+  fp = fopen("usuarios.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+    printf("\n\n");
+    printf(" | ---------------- Exibe usuário -------------------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" | --------------------------------------------------------- | \n");
+  }
+  while(fread(usu, sizeof(Usuario), 1, fp)) {
+  if (usu->status != 'x') {
+    exibeusuario(usu);
+    }
+  }
+  fclose(fp);
+  free(usu);
 }
-void delete_usuario(void){
-    char cpf[20];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Deletar usuario.                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe CPF:                                                            ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);getchar();
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+void exibeusuario(Usuario* usu) {
+    
+    {
+    printf("\n= = = Usuario Cadastrado = = =\n");
+    printf("Nome do Usuario: %s\n", usu->nome);
+    printf("CPF do Usuario: %s\n", usu->cpf);
+    printf("Telefone do Usuario: %s\n", usu->telefone);
+    printf("Status:%c\n", usu->status);
+    printf(" | Pressione qualquer tecla para sair.... ");
+    }
     getchar();
-    printf("\n");
-
-}
-void pesquisar_usuario(void){
-    char cpf[20];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Pesquisar usuario.                           ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe  CPF Que Deseja Pesquisar::                                     ///\n");
-    printf("/// Este Sao os dados do Usuario pesquisado:                                ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[A-Z a-z.,0-9]",cpf);getchar();
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    getchar();
-    printf("\n");
 }
