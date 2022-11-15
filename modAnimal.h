@@ -1,17 +1,20 @@
 //Funçoes Mod Animal.
-void modulo_animal(void);
-char menu_animal(void);
-void editar_animal(void);
-void pesquisar_animal(void);
-void delete_animal(void);
 typedef struct animal Animal;
 
 struct animal {
-  char cpf[20];
   char animal[20];
-  char cor[20];
-  char id[20];
+  char cpf[20];
+  char raca[20];
+  char codigo[10];
+  char sexo;
+  char status;
 };
-
-
-Animal* cadastroanimal();
+void modulo_animal(void);
+char menu_animal(void);
+void cadastraranimal(void);
+void buscapet(void);
+void editapet(void);
+void excluipet(void);
+void listaPets(void);
+void gravaPet(Animal* pet);
+void exibepet(Animal* pet);

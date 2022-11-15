@@ -255,6 +255,7 @@ void gravaUsuario(Usuario* usu) {
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
+    exit(1);
   }
   fwrite(usu, sizeof(Usuario), 1, fp);
   fclose(fp);
@@ -262,18 +263,19 @@ void gravaUsuario(Usuario* usu) {
 void listaUsuarios(void) {
   FILE* fp;
   Usuario* usu;
-  printf("\n = Lista de Alunos = \n"); 
+  printf("\n = Lista de Usuarios = \n"); 
   usu = (Usuario*) malloc(sizeof(Usuario));
   fp = fopen("usuarios.dat", "rb");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
     exit(1);
+  }
     printf("\n\n");
     printf(" | ---------------- Exibe usuário -------------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
-  }
+  
   while(fread(usu, sizeof(Usuario), 1, fp)) {
   if (usu->status != 'x') {
     exibeusuario(usu);
