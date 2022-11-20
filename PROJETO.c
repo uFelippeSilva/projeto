@@ -6,6 +6,7 @@
 #include "modSobre.h"
 #include "modUsuario.h"
 #include "modHorarios.h"
+#include "modServico.h"
 #include "modRelatorios.h"
 #include "validacaoProjeto.h"
 
@@ -29,7 +30,7 @@ int main(void) {
         switch(opcao) {
             case '1':     modulo_usuario();
                           break;
-            case '2':     modulo_horarios();
+            case '2':     modulo_servico();
                           break;
             case '3':     modulo_animal();
                           break;
@@ -57,10 +58,10 @@ char tela_principal(void) {
     printf("///                                                                             ///\n");
     printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
-    printf("///           |           1. menu usuario                                   |   ///\n");
-    printf("///           |           2. menu consultas                                 |   ///\n");
-    printf("///           |           3. menu animal                                    |   ///\n");
-    printf("///           |           4. menu relatiorios                               |   ///\n");
+    printf("///           |           1. Menu Usuario                                   |   ///\n");
+    printf("///           |           2. Menu Serviços                                  |   ///\n");
+    printf("///           |           3. Menu Animal                                    |   ///\n");
+    printf("///           |           4. Menu Relatorio                                 |   ///\n");
     printf("///           |           5. menu sobre Projeto Criadores                   |   ///\n");
     printf("///           |           0. Finalizar Programa                             |   ///\n");
     printf("///           |                                                             |   ///\n");
