@@ -324,3 +324,31 @@ void exibeusuario(Usuario* usu) {
     }
 
 }
+
+Usuario* usuario_busca(void){
+//Creditos a Victor Ryan!. https://github.com/VictorRyan3612    
+  FILE* fp;
+  Usuario* usu;
+  usu = (Usuario*) malloc(sizeof(Usuario));
+
+  char* cpf_busca_dig;
+  cpf_busca_dig = cpf_busca();
+
+  fp = fopen("usuarios.dat", "rb");
+  if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar este programa...\n");
+      exit(1);
+  }
+
+  while(!feof(fp)) {
+      fread(usu, sizeof(Usuario), 1, fp);
+      if ((strcmp(usu->cpf, cpf_busca_dig) == 0) && (usu->status != 'x')){
+          fclose(fp);
+          return usu;
+      }
+  }
+  free(cpf_busca_dig);
+  fclose(fp);
+  return NULL;
+}

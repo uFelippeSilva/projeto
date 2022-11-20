@@ -144,3 +144,30 @@ int validaCpf(char *cpf) {
     }
 
 }
+
+int validaHora(int hora, int min)
+{
+
+  if ((hora < 7 || hora > 17) || (min < 0 || min > 59))  // Hora  Menor que 7 Devido a Clinica so Ira Trabalhar Das 7 as 17 Horas.
+  {
+    return 0;      
+  }
+  else
+  {
+    return 1;
+  }    
+
+}
+
+char* cpf_busca(void){
+  //Creditos a Victor Ryan!. https://github.com/VictorRyan3612
+    char* cpf_busca_dig;
+
+    cpf_busca_dig = (char*) malloc(13*sizeof(char));
+    printf("\n ==== Busca usuario ==== \n"); 
+    printf("Informe o CPF:\n"); 
+    scanf("%s", cpf_busca_dig);
+    getchar();
+    
+    return cpf_busca_dig;
+}

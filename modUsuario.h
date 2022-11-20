@@ -21,3 +21,4 @@ void gravaUsuario(Usuario*);
 void listaUsuarios(void);
 void atualizarusuario(void);
 
+Usuario* usuario_busca(void);

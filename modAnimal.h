@@ -1,6 +1,8 @@
 //Funçoes Mod Animal.
 typedef struct animal Animal;
 
+typedef struct usuario Usuario;
+
 struct animal {
   char animal[20];
   char cpf[20];
