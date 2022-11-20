@@ -23,6 +23,7 @@ void modulo_usuario(void) {
     } while (opcao != '0');
 }
 char menu_usuario(void) {
+    system ( " clear||cls " );
     char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
@@ -54,6 +55,7 @@ char menu_usuario(void) {
 }
 
 void cadastrarusuario(void){
+  system ( " clear||cls " );
   Usuario* usu;
   usu = (Usuario*) malloc(sizeof(Usuario));
     printf(" | ========================================================= | \n");
@@ -65,7 +67,7 @@ void cadastrarusuario(void){
   do
     {
       printf(" | Informe o nome do usuario: ");
-      scanf(" %51[^\n]", usu->nome);
+      scanf(" %50[^\n]", usu->nome);
       getchar();
         
     } while (!validaPalavra(usu->nome));
@@ -73,18 +75,31 @@ void cadastrarusuario(void){
   do
     {
         printf(" | Informe o cpf do usuario: ");
-        scanf(" %20[^\n]", usu->cpf);
+        scanf(" %19[^\n]", usu->cpf);
         getchar();
         
     } while (!validaCpf(usu->cpf));
+    do {
+        printf(" Digite o dia que você nasceu por favor: ");
+        scanf("%d", &usu->dd);
+        getchar();
+        printf(" Digite o seu mês de nascimento: ");
+        scanf("%d", &usu->mm);
+        getchar();
+        printf(" digite o seu ano de nascimento: ");
+        scanf("%d", &usu->aa);
+        getchar();
+        
+    } while(!validaData(usu->dd, usu->mm, usu->aa));
 
   do
     {
         printf(" | Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
-        scanf(" %15[^\n]", usu->telefone);
+        scanf(" %14[^\n]", usu->telefone);
         getchar();
         
     } while (!validaTelefone(usu->telefone));
+
     usu->status = 'a';
     gravaUsuario(usu);
     free(usu);
@@ -93,6 +108,7 @@ void cadastrarusuario(void){
 
 }
 void buscausuario(void){
+  system ( " clear||cls " );
 
   FILE* fp;
   Usuario* usu;
@@ -113,8 +129,6 @@ void buscausuario(void){
     if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status != 'x')){
       achou =1;
     }
-
-
 }
 if (achou) {
     exibeusuario(usu);
@@ -125,9 +139,11 @@ fclose(fp);
 free(usu);
 printf(" | Pressione qualquer tecla para sair.... ");
 getchar();
+getchar();
 
 }
 void atualizarusuario(void){
+   system ( " clear||cls " );
    FILE* fp;
     Usuario* usu;
     int achou;
@@ -163,27 +179,32 @@ if (achou) {
         do
     {
         printf(" | Informe o nome do usuario: ");
-        scanf(" %51[^\n]", usu->nome);
+        scanf(" %50[^\n]", usu->nome);
         getchar();
         
     } while (!validaPalavra(usu->nome));
 
-  do
-    {
-        printf(" | Informe o cpf do usuario: ");
-        scanf(" %20[^\n]", usu->cpf);
+    do {
+        printf(" Digite o dia que você nasceu por favor: ");
+        scanf("%d", &usu->dd);
+        getchar();
+        printf(" Digite o seu mês de nascimento: ");
+        scanf("%d", &usu->mm);
+        getchar();
+        printf(" digite o seu ano de nascimento: ");
+        scanf("%d", &usu->aa);
         getchar();
         
-    } while (!validaCpf(usu->cpf));
+    } while(!validaData(usu->dd, usu->mm, usu->aa));
 
   do
     {
         printf(" | Informe o Telefone do usuario: ");
-        scanf(" %15[^\n]", usu->telefone);
+        scanf(" %14[^\n]", usu->telefone);
         getchar();
         
     } while (!validaTelefone(usu->telefone));
-        usu->status = 'a';
+        usu->status = 'a'; // a = Ativo. x = Inativo
         fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
         fwrite(usu, sizeof(Usuario), 1, fp);
         printf("\nUsuario editado com sucesso!!!\n");
@@ -200,6 +221,7 @@ fclose(fp);
 
 }      
 void deletarusuario(void){
+  system ( " clear||cls " );
   FILE* fp;
     Usuario* usu;
     int achou;
@@ -261,6 +283,7 @@ void gravaUsuario(Usuario* usu) {
   fclose(fp);
 }
 void listaUsuarios(void) {
+  system ( " clear||cls " );
   FILE* fp;
   Usuario* usu;
   printf("\n = Lista de Usuarios = \n"); 
@@ -283,6 +306,9 @@ void listaUsuarios(void) {
   }
   fclose(fp);
   free(usu);
+  printf(" | Pressione qualquer tecla para sair.... ");
+  getchar();
+  getchar();
 }
 void exibeusuario(Usuario* usu) {
     
@@ -290,9 +316,11 @@ void exibeusuario(Usuario* usu) {
     printf("\n= = = Usuario Cadastrado = = =\n");
     printf("Nome do Usuario: %s\n", usu->nome);
     printf("CPF do Usuario: %s\n", usu->cpf);
+    printf("Dia Que Nasceu: %d\n", usu->dd);
+    printf("Mes Que Nasceu: %d\n", usu->mm);
+    printf("Ano Que Nasceu: %d\n", usu->aa);
     printf("Telefone do Usuario: %s\n", usu->telefone);
     printf("Status:%c\n", usu->status);
-    printf(" | Pressione qualquer tecla para sair.... ");
     }
-    getchar();
+
 }

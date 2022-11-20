@@ -4,6 +4,9 @@ struct usuario {
   char nome[51];
   char cpf[20];
   char telefone[15];
+  int dd;
+  int mm;
+  int aa;
   char status;
 };
 
