@@ -25,6 +25,7 @@ void modulo_animal(void) {
 
 char menu_animal(void) {
     char op;
+    system ( " clear||cls " );
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                             ///\n");
@@ -55,6 +56,7 @@ char menu_animal(void) {
 
 }
 void cadastraranimal(void){
+    system ( " clear||cls " );
     Animal* pet;
     pet = (Animal*) malloc(sizeof(Animal));
     printf(" | ========================================================= | \n");
@@ -103,6 +105,7 @@ void cadastraranimal(void){
 }  
 
 void buscapet(void){
+    system ( " clear||cls " );
     FILE* fp;
     Animal* pet;
     int achou;
@@ -139,6 +142,7 @@ getchar();
 
 }
 void editapet(void){
+    system ( " clear||cls " );
     FILE* fp;
     Animal* pet;
     int achou;
@@ -218,6 +222,7 @@ fclose(fp);
 
 }  
 void excluipet(void){
+    system ( " clear||cls " );
     FILE* fp;
     Animal* pet;
     int achou;
@@ -285,6 +290,7 @@ void gravaPet(Animal* pet){
 }
 
 void listaPets(void){
+    system ( " clear||cls " );
     FILE* fp;
     Animal* pet;
     pet = (Animal*) malloc(sizeof(Animal));
@@ -315,7 +321,5 @@ void exibepet(Animal* pet){
     printf("ID Unico do Pet:%s\n", pet->codigo);
     printf("Sexo do Animal:%c\n", pet->sexo);
     printf("Status:%c\n", pet->status);
-    printf(" | Pressione qualquer tecla para sair.... ");
     }
-    getchar();
 }

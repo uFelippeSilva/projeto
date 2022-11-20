@@ -23,8 +23,7 @@ void modulo_usuario(void) {
     } while (opcao != '0');
 }
 char menu_usuario(void) {
-    
-    system ( " clear||cls " );
+        system ( " clear||cls " );
     char op;
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
