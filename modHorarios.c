@@ -94,7 +94,8 @@ do {
         
     } while(!validaHora(hora->hora, hora->min));
     printf("Informe id da consulta 6 Digitos: ");
-    scanf(" %s",&hora->id_consulta);
+   scanf(" %6[^\n]", hora->id_consulta);
+    getchar();
     hora->status='a';
 printf("Consulta Cadastrado com Sucesso.!");
 printf("Pressione qualquer tecla para sair.... ");
