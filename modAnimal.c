@@ -351,3 +351,35 @@ void exibepet(Animal* pet)
         printf("Status:%c\n", pet->status);
     }
 }
+
+int busca_petfile(char* cpf_busca, char* id_pet){
+    system ( " clear||cls " );
+    FILE* fp;
+    Animal* pet;
+    int achou;
+    fp = fopen("animais.dat", "rb");
+     if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+  pet = (Animal*) malloc(sizeof(Animal));
+  achou = 0;
+ while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a'))){
+            achou=1;
+    }
+ }
+
+if (achou) {
+    fclose(fp);
+    free(pet);
+    getchar();
+    return 1;
+}else {
+    printf("Os dados do Pet  não foram encontrados\n");
+    fclose(fp);
+    free(pet);
+    return 0;
+}
+
+}

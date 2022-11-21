@@ -18,4 +18,4 @@ void deletarservico(void);
 void gravaServico(Servicos*);
 void exibeservico(Servicos* ser);
 void listaServicos(void);
-
+int buscaservico_file(char*);

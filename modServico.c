@@ -319,3 +319,40 @@ printf("Pressione qualquer tecla para sair.... ");
 getchar();
 getchar();
 }
+int buscaservico_file(char*id_busca){
+  system ( " clear||cls " );
+  FILE* fp;
+  Servicos* ser;
+  int achou;
+  fp = fopen("servicos.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar Servico                          | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ========================================================= | \n");
+
+  ser = (Servicos*) malloc(sizeof(Servicos));
+  achou = 0;
+  while((!achou) && (fread(ser,sizeof(Servicos), 1, fp))) {
+    if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status != 'x'))
+    {
+      achou =1;
+    }
+}
+if (achou) {
+    exibeservico(ser);
+    fclose(fp);
+    free(ser);
+    return 1;
+}else {
+    printf("Os dados do usuário  não foram encontrados\n");
+    fclose(fp);
+    free(ser);
+    return 0;
+}}
