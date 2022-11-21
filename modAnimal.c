@@ -53,14 +53,11 @@ char menu_animal(void) {
     printf("\t\t\t<<< ... Loading ... >>>\n");
     sleep(1);
     return op;
-
-
 }
+
 void cadastraranimal(void){
     Animal* pet;
     pet = (Animal*) malloc(sizeof(Animal));
-
-
     Usuario* usu;
     usu = (Usuario*) malloc(sizeof(Usuario));
     int achou;
@@ -77,40 +74,30 @@ void cadastraranimal(void){
         }
     }while(achou == 0);
 
-
     strcpy(pet-> cpf, usu -> cpf);
     strcpy(cpf_busca_dig, pet->cpf);
    
-    
-
     system("cls||clear");
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" |                   Cadastrar Animal                        | \n");
     printf(" | ========================================================= | \n");
     printf(" |                                                           | \n");
-
-   do
+    do
     {
-      printf(" | Informe o nome do animal: ");
-      scanf(" %19[^\n]", pet->animal);
-      getchar();
-        
-    } while (!validaPalavra(pet->animal));
-
-  do
+        printf(" | Informe o nome do animal: ");
+        scanf(" %19[^\n]", pet->animal);
+        getchar();
+    }   while (!validaPalavra(pet->animal));
+    do
     {
         printf(" | Informe A Raça do animal: ");
         scanf(" %19[^\n]", pet->raca);
         getchar();
-        
-    } while (!validaPalavra(pet->raca));
-    
+    }    while (!validaPalavra(pet->raca));
         printf(" | Informe o codigo Unico do Animal: ");
         scanf(" %9[^\n]", pet->codigo);
         getchar();
-        
-    
     printf("Informe o sexo do animal (M/F): ");
     scanf("%c", &pet->sexo);
     pet->status = 'a';
@@ -118,7 +105,6 @@ void cadastraranimal(void){
     free(pet);
     printf(" | Pressione qualquer tecla para sair.... ");
     getchar();
-
 }  
 
 void buscapet(void){
@@ -129,9 +115,9 @@ void buscapet(void){
     char cpf_busca[20];
     char id_pet[10];
     fp = fopen("animais.dat", "rb");
-     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+if (fp == NULL) {
+printf("Ops! Erro na abertura do arquivo!\n");
+exit(1);
 }
  printf("\n = Buscar PET = \n"); 
   printf("Informe CPF Do Dono Do ANIMAL: "); 
@@ -142,11 +128,9 @@ void buscapet(void){
   achou = 0;
  while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
     if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a'))){
-
-            achou=1;
+    achou=1;
     }
  }
-
 if (achou) {
     exibepet(pet);
 }else {
@@ -177,8 +161,9 @@ void editapet(void){
      }
     printf(" | ========================================================= | \n");
     printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar Animal ------------------- | \n");
-    printf(" |                                                           | \n");
+    printf(" | ------------------- Atualizar Animal -------------------  | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ========================================================= | \n");
     printf(" | Digite o CPF Do Dono do Animal cadastrado: ");
     scanf("%s", cpf_busca);
     getchar();
@@ -192,7 +177,7 @@ void editapet(void){
  }
 if (achou) {
     exibepet(pet);
-    printf("Deseja realmente editar este usuario?[s/n]");
+    printf(" | Deseja realmente editar este usuario?[s/n]");
     scanf("%c",&resp);
     getchar();
     if (resp == 's' || resp == 'S') {
@@ -255,7 +240,7 @@ void excluipet(void){
     pet = (Animal*) malloc(sizeof(Animal));
     printf(" | ============================================================== | \n");
     printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- Excluir Animal ----------------------- | \n");
+    printf(" | ---------------------- Excluir Animal ------------------------ | \n");
     printf(" |                                                                | \n");
     printf(" | Informe o CPF do Dono do Animal que voce quer excluir: ");
     scanf("%s", cpf_busca);
@@ -319,7 +304,7 @@ void listaPets(void){
     exit(1);
 }
     printf("\n\n");
-    printf(" | ---------------- Lista Pets --------------------------    | \n");
+    printf(" | ----------------------- Lista Pets ---------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
  while(fread(pet, sizeof(Animal), 1, fp)) {
