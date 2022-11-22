@@ -179,9 +179,16 @@ if (achou)
     }
   else
     {
-      printf("Os dados da consulta nao foram alterados!");
+      printf("Os dados nao foram alterados!\n");
+      printf("Pressione qualquer tecla para sair...");
+      getchar();
     }
-}
+    } else {
+    printf("Consulta nao encontrada!\n");
+    printf("Pressione qualquer tecla para sair...");
+    getchar();
+  }
+
 free(hora);
 fclose(fp);
 
