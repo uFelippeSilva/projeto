@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include "modHorarios.h"
 #include "modAnimal.h"
@@ -12,9 +13,11 @@ void modulo_horarios(void) {
         switch(opcao) {
             case '1': 	cadastrar_horario();
                         break;
-            case '2': 	editar_horario();
+            case '2': 	busca_consulta();
                         break;
-            case '3': 	deletar_horario();
+            case '3': 	atualizar_horario();
+                        break;
+            case '4':   deletar_consulta();
                         break;
         } 		
     } while (opcao != '0');
@@ -30,9 +33,10 @@ char menu_horarios(void){
     printf("///                                                                             ///\n");
     printf("///            = = = = sistema de agendamento de Horarios para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
-    printf("///           |           1. Cadastrar Horario                              |   ///\n");
-    printf("///           |           2. Editar Horario                                 |   ///\n");
-    printf("///           |           3. Deletar Horario                                |   ///\n");
+    printf("///           |           1. Cadastrar Consulta                             |   ///\n");
+    printf("///           |           2. Procurar Consulta                              |   ///\n");
+    printf("///           |           3. Atualizar Consulta                             |   ///\n");
+    printf("///           |           4. Deletar Consulta Marcada                       !   ///\n");
     printf("///           |           0. Voltar Menu Principal                          |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -66,29 +70,29 @@ Horario* hora;
     } while (a == 0);
 do
     {
-      printf(" | Informe o ID do Serviço: ");
+      printf(" | Informe o ID do Servico: ");
         scanf(" %4[^\n]", hora->id_servico);
       getchar();
       b = buscaservico_file(hora->id_servico);
     } while (b ==0);
 
 do {
-        printf(" Digite o dia do Serviço: ");
+        printf(" Digite o dia da Consulta: ");
         scanf("%d", &hora->dd);
         getchar();
-        printf(" Digite o Mês do Serviço: ");
+        printf(" Digite o Mês da Consulta: ");
         scanf("%d", &hora->mm);
         getchar();
-        printf(" digite o Ano do Serviço: ");
+        printf(" digite o Ano da Consulta: ");
         scanf("%d", &hora->aa);
         getchar();
         
     } while(!validaData(hora->dd, hora->mm, hora->aa));
 do {
-        printf(" Digite a Hora do Serviço: ");
+        printf(" Digite a Hora da Consulta: ");
         scanf("%d", &hora->hora);
         getchar();
-        printf(" Digite o Minuto do Serviço: ");
+        printf(" Digite o Minuto da Consulta: ");
         scanf("%d", &hora->min);
         getchar();
         
@@ -102,62 +106,180 @@ printf("Pressione qualquer tecla para sair.... ");
 getchar();
 
 }
-void editar_horario(void){
-    char data[32];
-    char horario[24];
-    char data2[32];
-    char horario2[24];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                          Editar Horario  da Consulta.                   ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe dd/mm/ano consulta antiga:                                      ///\n");
-    printf("/// Informe Horario consulta antiga:                                        ///\n");
-    printf("/// Pra Quando deseja Altera consulta dd/mm/ano:                            ///\n");
-    printf("/// Qual novo Horario deseja:                                               ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[0-9]",data);getchar();
-    scanf("%[0-9]",horario);getchar();
-    scanf("%[0-9]",data2);getchar();
-    scanf("%[0-9]",horario2);getchar();
-    printf("Consulta Remarcada com Sucesso.");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
+void atualizar_horario(void){
+    system ( " clear||cls " );
+    FILE* fp;
+    Horario* hora;
+    int achou;
+    char resp;
+    char id_busca[7];
+    hora = (Horario*) malloc(sizeof(Horario));
+    achou =0;
+    fp = fopen("consultas.dat", "r+b");
+    if (fp == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar o programa...\n");
+        exit(1);
+}
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ------------------- Atualizar Consulta -------------------| \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" | ========================================================= | \n");
+    printf("Digite o ID da Consulta cadastrado: ");
+    scanf("%s", id_busca);
     getchar();
-    printf("\n");
+    while((!achou) && (fread(hora, sizeof(Horario), 1, fp)))
+  {
+  if ((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status == 'a'))
+    {
+      achou = 1;
+    }
+  }
+if (achou)
+{
+    exibeconsulta(hora);
+    printf(" Deseja realmente editar esta consulta? [s/n] ");
+    scanf("%c", &resp);
+    getchar();
+    if (resp == 's' || resp == 'S')
+    {
+      do 
+      {
+        printf("Digite o novo dia do servico: ");
+        scanf("%d", &hora->dd);
+        getchar();
+        printf("Digite o novo mes do servico: ");
+        scanf("%d", &hora->mm);
+        getchar();
+        printf("Digite o novo ano do servico: ");
+        scanf("%d", &hora->aa);
+        getchar();   
+      } while(!validaData(hora->dd, hora->mm, hora->aa));
+      do 
+      {
+        printf(" Digite a nova hora do servico: ");
+        scanf("%d", &hora->hora);
+        getchar();
+        printf(" Digite o novo Minuto do servico: ");
+        scanf("%d", &hora->min);
+        getchar();
+        
+    } while(!validaHora(hora->hora, hora->min));
+        hora->status = 'a'; // a = Ativo. x = Inativo
+        fseek(fp, (-1)*sizeof(Horario), SEEK_CUR);
+        fwrite(hora, sizeof(Horario), 1, fp);
+        printf("\n Consulta editada com sucesso!!!\n");
+        gravaConsulta(hora);
+        printf("Pressione qualquer tecla para sair... ");
+        getchar();
+
+    }
+  else
+    {
+      printf("Os dados da consulta nao foram alterados!");
+    }
+}
+free(hora);
+fclose(fp);
+
 
 }
 
-void deletar_horario(void){
-    char data[32];
-    char horario[24];
-    char deletar[10];
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                            Deletar Consulta.                            ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("/// Informe dd/mm/ano da Consulta Que Deseja Excluir::                      ///\n");
-    printf("/// Informe Horario da consulta:                                            ///\n");
-    printf("/// Realmente deseja deletar sua consulta?:                                 ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    scanf("%[0-9]",data);getchar();
-    scanf("%[0-9]",horario);getchar();
-    scanf("%[A-Z a-z]",deletar);getchar();
-    printf("Consulta Deletada Com Sucesso.");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///                     Pressione enter para continuar!                     ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
+void busca_consulta(void){
+
+FILE* fp;
+Horario* hora;
+int achou;
+char id_busca[7];
+fp = fopen("consultas.dat", "rb");
+  if (fp == NULL)
+    {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+  printf("\n = Buscar Consulta = \n"); 
+  printf("Informe ID da consulta: "); 
+  scanf(" %6[^\n]", id_busca);
+  hora = (Horario*) malloc(sizeof(Horario));
+  achou = 0;
+while((!achou) && (fread(hora,sizeof(Horario), 1, fp))) 
+  {
+      if ((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status != 'x'))
+      {
+        achou =1;
+      }
+  }
+if (achou)
+  {
+    exibeconsulta(hora);
+  }
+else
+  {
+    printf("Os dados da consulta nao foram encontrados\n");
+  }
+fclose(fp);
+free(hora);
+printf("Pressione qualquer tecla para sair.... ");
+getchar();
 }
+
+
+
+
+void deletar_consulta(void){
+  system ( " clear||cls " );
+  FILE* fp;
+    Horario* hora;
+    int achou;
+    char resp;
+    char id_busca[7];
+    fp = fopen("consultas.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        exit(1);
+    }
+    hora = (Horario*) malloc(sizeof(Horario));
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ---------------------- Excluir usuario ----------------------- | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ============================================================== | \n");
+    printf("Informe o ID da consulta: ");
+    scanf("%s", id_busca);
+    getchar();
+    achou=0;
+    while ((!achou) && (fread(hora, sizeof(Horario), 1, fp))){
+    if ((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status == 'a')){
+        achou = 1;
+        }
+    }
+    if (achou){
+        exibeconsulta(hora);
+        printf("Deseja realmente excluir esta consulta? (s/n)");
+        scanf("%c", &resp);
+        if (resp == 's' || resp == 'S'){
+            hora->status = 'x';
+            fseek(fp, (-1)*sizeof(Horario), SEEK_CUR);
+            fwrite(hora, sizeof(Horario), 1, fp);
+            printf("\n Consulta excluido com sucesso!");
+            gravaConsulta(hora);
+            printf("Pressione qualquer tecla para sair... ");
+            getchar();
+        }else{
+            printf("\n Tudo bem, a consulta nao foi alterada.");
+        }
+        }else{
+        printf("Consulta nao foi encontrada!");
+    }
+    free(hora);
+    fclose(fp);
+    printf("Pressione qualquer tecla para sair.... ");
+    getchar();
+    
+}
+
 
 
 

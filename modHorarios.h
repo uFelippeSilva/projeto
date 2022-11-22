@@ -15,10 +15,8 @@ struct horario {
 };
 void exibeconsulta(Horario* hora);
 void gravaConsulta(Horario*);
-
-
-void modulo_horarios(void);
-char menu_horarios(void);
 void cadastrar_horario(void);
-void editar_horario(void);
-void deletar_horario(void);
+void atualizar_horario(void);
+void busca_consulta(void);
+char menu_horarios(void);
+void deletar_consulta(void);

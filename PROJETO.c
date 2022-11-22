@@ -59,7 +59,7 @@ char tela_principal(void) {
     printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///           |           1. Menu Usuario                                   |   ///\n");
-    printf("///           |           2. Menu Serviços                                  |   ///\n");
+    printf("///           |           2. Menu Servicos                                  |   ///\n");
     printf("///           |           3. Menu Animal                                    |   ///\n");
     printf("///           |           4. Menu Relatorio                                 |   ///\n");
     printf("///           |           5. menu sobre Projeto Criadores                   |   ///\n");

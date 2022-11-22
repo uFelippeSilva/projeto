@@ -78,7 +78,7 @@ do
   }while (!validaCpf(usu->cpf));
 do
   {
-    printf(" Digite o dia que voce nasceu por favor: ");
+    printf(" Digite o dia que voce nasceu: ");
     scanf("%d", &usu->dd);
     getchar();
     printf(" Digite o seu mes de nascimento: ");
@@ -187,7 +187,7 @@ if (achou)
       } while (!validaPalavra(usu->nome));
       do 
       {
-        printf("Digite o dia que voce nasceu por favor: ");
+        printf("Digite o dia que voce nasceu: ");
         scanf("%d", &usu->dd);
         getchar();
         printf("Digite o seu mes de nascimento: ");

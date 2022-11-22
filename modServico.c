@@ -79,11 +79,11 @@ do
   scanf(" %3[^\n]", ser->id_servico);
   getchar();   
 } while (!(ser->id_servico));
-printf("Informe o Valor do Servico:");
+printf("Informe o Valor do Servico: ");
 scanf(" %9[^\n]", ser->valor);
 getchar();
 
-printf("Informe o Tempo Gasto do Servico");
+printf("Informe o Tempo Gasto do Servico: ");
 scanf(" %9[^\n]", ser->tempo);
 getchar();
 
@@ -162,7 +162,7 @@ if (fp == NULL)
 }
   printf(" | ========================================================= | \n");
   printf(" | --------------------------------------------------------- | \n");
-  printf(" | ------------------- Atualizar Serviço ------------------- | \n");
+  printf(" | ------------------- Atualizar Servico ------------------- | \n");
   printf(" | --------------------------------------------------------- | \n");
   printf(" | ========================================================= | \n");
   printf("Digite o ID do Servico cadastrado:");
@@ -183,10 +183,10 @@ scanf("%c", &resp);
 getchar();
 if (resp == 's' || resp == 'S')
   { 
-    printf("Informe o Novo Valor Do Serviço: ");
+    printf("Informe o Novo Valor Do Servico: ");
     scanf(" %9[^\n]", ser->valor);
     getchar();    
-    printf("Informe o Tempo Que Estima-se Gastar neste Serviço:");
+    printf("Informe o Tempo Que Estima-se Gastar neste Servico:");
     scanf(" %9[^\n]", ser->tempo);
     getchar();
     ser->status = 'a';
@@ -280,7 +280,7 @@ fclose(fp);
 
 void exibeservico(Servicos* ser) {
 {
-  printf("\n= = = Serviço Cadastrado = = =\n");
+  printf("\n= = = Servico Cadastrado = = =\n");
   printf("Nome do Servico: %s\n", ser->nome);
   printf("ID do Servico: %s\n", ser->id_servico);
   printf("Valor do Servico: %s\n", ser->valor);
