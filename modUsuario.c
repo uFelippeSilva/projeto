@@ -213,9 +213,16 @@ if (achou)
     }
   else
     {
-      printf("Os dados nao foram alterados!");
+      printf("Os dados nao foram alterados!\n");
+      printf("Pressione qualquer tecla para sair...");
+      getchar();
     }
-  } 
+    } else {
+    printf("usuario não encontrado!\n");
+    printf("Pressione qualquer tecla para sair...");
+    getchar();
+  }
+  
 free(usu);
 fclose(fp);
 
@@ -262,9 +269,11 @@ void deletarusuario(void){
             getchar();
         }else{
             printf("\nTudo bem, os dados nao foram alterados!");
+            getchar();
         }
         }else{
         printf("O usuario nao foi encontrado!");
+        getchar();
     }
     free(usu);
     fclose(fp);
