@@ -101,10 +101,12 @@ do {
    scanf(" %6[^\n]", hora->id_consulta);
     getchar();
     hora->status='a';
+
 printf("Consulta Cadastrado com Sucesso.!");
 printf("Pressione qualquer tecla para sair.... ");
 getchar();
-
+gravaConsulta(hora);
+free(hora);
 }
 void atualizar_horario(void){
     system ( " clear||cls " );

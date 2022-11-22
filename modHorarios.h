@@ -20,3 +20,4 @@ void atualizar_horario(void);
 void busca_consulta(void);
 char menu_horarios(void);
 void deletar_consulta(void);
+void modulo_horarios(void);

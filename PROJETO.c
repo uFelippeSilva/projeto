@@ -34,7 +34,7 @@ int main(void) {
                           break;
             case '3':     modulo_animal();
                           break;
-            case '4':     modulo_relatorio();
+            case '4':     modulo_horarios();
                           break;      
             case '5':     modulo_sobre();    
                           break;                        
@@ -61,7 +61,7 @@ char tela_principal(void) {
     printf("///           |           1. Menu Usuario                                   |   ///\n");
     printf("///           |           2. Menu Servicos                                  |   ///\n");
     printf("///           |           3. Menu Animal                                    |   ///\n");
-    printf("///           |           4. Menu Relatorio                                 |   ///\n");
+    printf("///           |           4. Menu Consultas                                 |   ///\n");
     printf("///           |           5. menu sobre Projeto Criadores                   |   ///\n");
     printf("///           |           0. Finalizar Programa                             |   ///\n");
     printf("///           |                                                             |   ///\n");
