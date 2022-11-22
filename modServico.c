@@ -199,9 +199,15 @@ if (resp == 's' || resp == 'S')
   }
   else
     {
-      printf("Tudo bem, os dados nao foram alterados!");
+      printf("Os dados nao foram alterados!\n");
+      printf("Pressione qualquer tecla para sair...");
+      getchar();
     }
-} 
+    } else {
+    printf("Servico nao encontrado!\n");
+    printf("Pressione qualquer tecla para sair...");
+    getchar();
+  }
 free(ser);
 fclose(fp);
 }     

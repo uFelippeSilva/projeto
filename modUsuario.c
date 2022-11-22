@@ -218,7 +218,7 @@ if (achou)
       getchar();
     }
     } else {
-    printf("usuario não encontrado!\n");
+    printf("usuario nao encontrado!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
   }
