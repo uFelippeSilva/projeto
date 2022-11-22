@@ -144,6 +144,7 @@ if (achou)
 else
     {
         printf("Os dados do Pet nao foram encontrados\n");
+        getchar();
     }
 fclose(fp);
 free(pet);
@@ -227,7 +228,10 @@ if(achou)
     } 
         else
             {
-            printf("Tudo bem, os dados nao foram alterados!");
+        printf("Tudo bem, os dados nao foram alterados! \n");
+        printf("Aperte Enter para continuar!\n");
+        getchar();
+        getchar();
             }
 } 
 free(pet);
@@ -271,14 +275,14 @@ while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
 if(achou)
 {
 exibepet(pet);
-printf("Deseja realmente excluir os dados deste usuario?(s/n)");
+printf("Deseja realmente excluir os dados deste animal?(s/n)");
 scanf("%c", &resp);
     if (resp == 's' || resp == 'S')
         {
             pet->status = 'x';
             fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
             fwrite(pet, sizeof(Animal), 1, fp);
-            printf("\nUsuário excluido com sucesso!");
+            printf("\n Animal excluido com sucesso!");
             gravaPet(pet);
             printf("Pressione qualquer tecla para sair... ");
             getchar();
@@ -290,7 +294,7 @@ scanf("%c", &resp);
 }
 else
     {
-        printf("O usuario nao foi encontrado!");
+        printf("O Animal nao foi encontrado!");
     }
 free(pet);
 fclose(fp);
