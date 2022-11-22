@@ -57,6 +57,7 @@ void tela_sobre(void) {
     printf("///              armazenando tanto informacoes do pet quanto do seu dono.       ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
 }
 void tela_dupla(void) {
     system("clear||cls");
@@ -76,4 +77,5 @@ void tela_dupla(void) {
     printf("///                                                                             ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    getchar();
 } 
