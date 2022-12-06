@@ -65,7 +65,6 @@ Horario* hora;
         getchar();
         printf(" | Informe o id do animal: ");
         scanf(" %9[^\n]", hora->id_animal);
-
       a = busca_petfile(hora->cpf_busca,hora->id_animal );
     } while (a == 0);
 do
