@@ -189,30 +189,31 @@ while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
     }
 if(achou)
 {
-        exibepet(pet);
-        printf("Deseja realmente editar este usuario?[s/n]");
-        scanf("%c",&resp);
-        getchar();
-    if (resp == 's' || resp == 'S')
-    {
-        do
-            {
-                printf("Informe o nome do animal: ");
-                scanf(" %19[^\n]", pet->animal);
-                getchar();        
-            }while (!validaPalavra(pet->animal)); 
-        do
-            {
-                printf("Informe o CPF Do Dono Do Animal: ");
-                scanf(" %20[^\n]", pet->cpf);
-                getchar();       
-            }while (!validaCpf(pet->cpf));
-        do
-            {
-                printf("Informe A Raca do animal: ");
-                scanf(" %19[^\n]", pet->raca);
-                getchar();    
-            }while (!validaPalavra(pet->raca));
+    exibepet(pet);
+    printf("Deseja realmente editar este usuario?[s/n]");
+    scanf("%c",&resp);
+    getchar();
+if (resp == 's' || resp == 'S')
+{
+    do
+        {
+            printf("Informe o nome do animal: ");
+            scanf(" %19[^\n]", pet->animal);
+            getchar();        
+        }while (!validaPalavra(pet->animal)); 
+    do
+        {
+            printf("Informe o CPF Do Dono Do Animal: ");
+            scanf(" %20[^\n]", pet->cpf);
+            getchar();       
+        }while (!validaCpf(pet->cpf));
+    do
+        {
+            printf("Informe A Raca do animal: ");
+            scanf(" %19[^\n]", pet->raca);
+            getchar();    
+        }while (!validaPalavra(pet->raca));
+        
         printf("Informe o codigo Unico do Animal: ");
         scanf("%s", pet->codigo);
         getchar();
@@ -223,21 +224,25 @@ if(achou)
         fwrite(pet, sizeof(Animal), 1, fp);
         printf("\nPet editado com sucesso!!!\n");
         gravaPet(pet);
-        printf("Pressione qualquer tecla para sair... ");
+        printf("Pressione qualquer tecla para sair...");
         getchar();
-    } 
-        else
-            {
+} 
+    else
+        {
         printf("Tudo bem, os dados nao foram alterados! \n");
         printf("Aperte Enter para continuar!\n");
         getchar();
         getchar();
-            }
-} 
+        }
+}
+else {
+    printf("usuario nao encontrado!\n");
+    printf("Pressione qualquer tecla para sair...");
+    getchar();
+    }
 free(pet);
 fclose(fp);
-}  
-
+}
 void excluipet(void){
 system ( " clear||cls " );
 FILE* fp;

@@ -6,11 +6,11 @@
 #include "modAnimal.h"
 #include "modServico.h"
 #include "validacaoProjeto.h"
-void modulo_horarios(void) {
+void modulo_horarios(void){
     char opcao;
     do {
         opcao = menu_horarios();
-        switch(opcao) {
+        switch(opcao){
             case '1': 	cadastrar_horario();
                         break;
             case '2': 	busca_consulta();
@@ -19,7 +19,7 @@ void modulo_horarios(void) {
                         break;
             case '4':   deletar_consulta();
                         break;
-        } 		
+        }
     } while (opcao != '0');
 }
 char menu_horarios(void){
@@ -103,7 +103,7 @@ do {
     hora->status='a';
 
 printf("Consulta Cadastrado com Sucesso.!");
-printf("Pressione qualquer tecla para sair.... ");
+printf("Pressione qualquer tecla para sair...");
 getchar();
 gravaConsulta(hora);
 free(hora);
@@ -179,16 +179,9 @@ if (achou)
     }
   else
     {
-      printf("Os dados nao foram alterados!\n");
-      printf("Pressione qualquer tecla para sair...");
-      getchar();
+      printf("Os dados da consulta nao foram alterados!");
     }
-    } else {
-    printf("Consulta nao encontrada!\n");
-    printf("Pressione qualquer tecla para sair...");
-    getchar();
-  }
-
+}
 free(hora);
 fclose(fp);
 

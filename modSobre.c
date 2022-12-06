@@ -34,13 +34,14 @@ char menu_sobre(void) {
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
     printf("///                                                                             ///\n");
-     printf("escolha oque deseja:\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("escolha oque deseja:\n");
     scanf("%c",&op);
     getchar();
     printf("\n");
     printf("\t\t\t<<< ... Loading ... >>>\n");
     sleep(1);
-
+    getchar();
     return op;
 }
 
@@ -57,7 +58,6 @@ void tela_sobre(void) {
     printf("///              armazenando tanto informacoes do pet quanto do seu dono.       ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    getchar();
 }
 void tela_dupla(void) {
     system("clear||cls");
@@ -77,5 +77,4 @@ void tela_dupla(void) {
     printf("///                                                                             ///\n");
     printf("///                                                                             ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    getchar();
 } 
