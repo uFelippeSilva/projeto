@@ -337,7 +337,7 @@ Usuario* usuario_busca(void){
 //Creditos a Victor Ryan!. https://github.com/VictorRyan3612    
   FILE* fp;
   Usuario* usu;
-  usu = (Usuario*) malloc(sizeof(Usuario));
+  usu = (Usuario*)malloc(sizeof(Usuario));
 
   char* cpf_busca_dig;
   cpf_busca_dig = cpf_busca();

@@ -132,9 +132,9 @@ pet = (Animal*) malloc(sizeof(Animal));
 achou = 0;
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
     {
-    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
+        if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
         {
-        achou=1;
+            achou=1;
         }
     }
 if (achou)
@@ -183,9 +183,9 @@ scanf("%s", id_pet);
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
     {
         if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
-            {
-                achou=1;
-            }
+        {
+            achou=1;
+        }
     }
 if(achou)
 {
@@ -195,24 +195,27 @@ if(achou)
     getchar();
 if (resp == 's' || resp == 'S')
 {
-    do
+        do
         {
             printf("Informe o nome do animal: ");
             scanf(" %19[^\n]", pet->animal);
             getchar();        
-        }while (!validaPalavra(pet->animal)); 
-    do
+        }
+        while(!validaPalavra(pet->animal)); 
+        do
         {
             printf("Informe o CPF Do Dono Do Animal: ");
             scanf(" %20[^\n]", pet->cpf);
             getchar();       
-        }while (!validaCpf(pet->cpf));
-    do
+        }
+        while (!validaCpf(pet->cpf));
+        do
         {
             printf("Informe A Raca do animal: ");
             scanf(" %19[^\n]", pet->raca);
             getchar();    
-        }while (!validaPalavra(pet->raca));
+        }
+        while (!validaPalavra(pet->raca));
         
         printf("Informe o codigo Unico do Animal: ");
         scanf("%s", pet->codigo);
@@ -227,7 +230,7 @@ if (resp == 's' || resp == 'S')
         printf("Pressione qualquer tecla para sair...");
         getchar();
 } 
-    else
+        else
         {
         printf("Tudo bem, os dados nao foram alterados! \n");
         printf("Aperte Enter para continuar!\n");
@@ -235,11 +238,12 @@ if (resp == 's' || resp == 'S')
         getchar();
         }
 }
-else {
+else
+{
     printf("usuario nao encontrado!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
-    }
+}
 free(pet);
 fclose(fp);
 }
@@ -273,9 +277,9 @@ achou=0;
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
     {
         if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
-            {
-                achou=1;
-            }
+        {
+            achou=1;
+        }
     }
 if(achou)
 {
@@ -283,24 +287,24 @@ exibepet(pet);
 printf("Deseja realmente excluir os dados deste animal?(s/n)");
 scanf("%c", &resp);
     if (resp == 's' || resp == 'S')
-        {
-            pet->status = 'x';
-            fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
-            fwrite(pet, sizeof(Animal), 1, fp);
-            printf("\n Animal excluido com sucesso!");
-            gravaPet(pet);
-            printf("Pressione qualquer tecla para sair... ");
-            getchar();
-        }
+    {
+        pet->status = 'x';
+        fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
+        fwrite(pet, sizeof(Animal), 1, fp);
+        printf("\n Animal excluido com sucesso!");
+        gravaPet(pet);
+        printf("Pressione qualquer tecla para sair... ");
+        getchar();
+    }
     else
-        {
-            printf("\nTudo bem, os dados nao foram alterados!");
-        }
+    {
+        printf("\nTudo bem, os dados nao foram alterados!");
+    }
 }
 else
-    {
-        printf("O Animal nao foi encontrado!");
-    }
+{
+    printf("O Animal nao foi encontrado!");
+}
 free(pet);
 fclose(fp);
 printf("Pressione qualquer tecla para sair.... ");
