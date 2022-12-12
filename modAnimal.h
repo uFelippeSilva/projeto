@@ -21,3 +21,5 @@ void listaPets(void);
 void gravaPet(Animal* pet);
 void exibepet(Animal* pet);
 int busca_petfile(char*, char*);
+void listaPetsMacho(void);
+void listaPetsFemea(void);

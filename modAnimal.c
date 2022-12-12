@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
 #include "modAnimal.h"
 #include "modUsuario.h"
 #include "validacaoProjeto.h"
@@ -103,6 +104,7 @@ scanf(" %9[^\n]", pet->codigo);
 getchar();
 printf("Informe o sexo do animal (M/F): ");
 scanf("%c", &pet->sexo);
+pet->sexo = toupper(pet->sexo);
 pet->status = 'a';
 gravaPet(pet);
 free(pet);
@@ -395,4 +397,62 @@ if (achou) {
     return 0;
 }
 
+}
+
+void listaPetsMacho(void){
+system ( " clear||cls " );
+FILE* fp;
+Animal* pet;
+pet = (Animal*) malloc(sizeof(Animal));
+fp = fopen("animais.dat","rb");
+if (fp == NULL)
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+printf("\n\n");
+printf(" | ----------------------- Lista Pets ---------------------- | \n");
+printf(" |                                                           | \n");
+printf(" | --------------------------------------------------------- | \n");
+while(fread(pet, sizeof(Animal), 1, fp))
+    {
+        if (pet->sexo == 'M')
+                {
+                exibepet(pet);
+                }
+    }
+fclose(fp);
+free(pet);
+getchar();
+getchar();
+}
+
+void listaPetsFemea(void){
+system ( " clear||cls " );
+FILE* fp;
+Animal* pet;
+pet = (Animal*) malloc(sizeof(Animal));
+fp = fopen("animais.dat","rb");
+if (fp == NULL)
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+printf("\n\n");
+printf(" | ----------------------- Lista Pets ---------------------- | \n");
+printf(" |                                                           | \n");
+printf(" | --------------------------------------------------------- | \n");
+while(fread(pet, sizeof(Animal), 1, fp))
+    {
+        if (pet->sexo == 'F')
+                {
+                exibepet(pet);
+                }
+    }
+fclose(fp);
+free(pet);
+getchar();
+getchar();
 }

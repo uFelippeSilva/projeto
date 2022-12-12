@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include "modRelatorios.h"
 #include "modUsuario.h"
+#include"modAnimal.h"
 
 void modulo_relatorio(void){
 char opcao;
@@ -13,7 +14,7 @@ do
     {
         case '1': 	relatorios_usu();
         break;
-        case '2': 	relatorio_animal();
+        case '2': 	relatorios_pet();
         break;
     } 		
 }
@@ -65,6 +66,26 @@ void relatorios_usu(void){
     }
     while (opcao != '0');
 }
+void relatorios_pet(void){
+    char opcao;
+    do
+    {
+        opcao = relatorio_animal();
+        switch(opcao)
+        {
+            case '1': 	relatorio_ordenado();
+            break;
+            case '2':   listaPets();
+            break;
+            case '3':   listaPetsMacho();
+            break;
+            case '4':   listaPetsFemea();
+            break;
+
+        } 		
+    }
+    while (opcao != '0');
+}
 
 char relatorio_usuario(void) {
     char op;
@@ -73,7 +94,7 @@ char relatorio_usuario(void) {
     printf("///                                                                             ///\n");
     printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
     printf("///           |                                                         |       ///\n");
-    printf("///           |     1. Alfabetico dinamico                              |       ///\n");
+    printf("///           |     1. Alfabetico Dinamico                              |       ///\n");
     printf("///           |     2. Listar Todos                                     |       ///\n");
     printf("///           |     3.                                                  |       ///\n");
     printf("///           |     Flavius Gorgonio                                    |       ///\n");
@@ -94,20 +115,26 @@ char relatorio_usuario(void) {
     return op;
 } 
 
-void relatorio_animal(void) {
+char relatorio_animal(void) {
+char op;
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
 printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
-printf("///           |     Relatorio de Animal                                 |       ///\n");
-printf("///           |     Estara Disponivel em Breve                          |       ///\n");
-printf("///           |     Quando Nosso Professor                              |       ///\n");
-printf("///           |     Flavius Gorgonio                                    |       ///\n");
-printf("///           |     Ensinar Nos Meros Humanos                           |       ///\n");
-printf("///           |     Armazenar Dados.                                    |       ///\n");
+printf("///           |     1. Alfabetico Dinamico                              |       ///\n");
+printf("///           |     2. Listar Todos Animais                             |       ///\n");
+printf("///           |     3. Animais Sexo Masculino                           |       ///\n");
+printf("///           |     4. Animais Sexo Feminino                            |       ///\n");
+printf("///           |     0. Voltar                                           |       ///\n");
 printf("///           |                                                         |       ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
 printf("///                                                                             ///\n");
-printf("///                                                                             ///\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
-} 
+printf("escolha oque deseja:\n");
+scanf("%c",&op);
+getchar();
+printf("\n");
+printf("\t\t\t<<< ... Loading ... >>>\n");
+sleep(1);
+return op;
+}
