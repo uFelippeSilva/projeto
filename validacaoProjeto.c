@@ -4,14 +4,17 @@
 #include <ctype.h>
 #include "validacaoProjeto.h"
 
-int isDigit(char n){
-if(n >= '0' && n <= '9'){
+int isDigit(char *string){
+  int i = 0;
+  while(string[i]!='\0'){
+    if(string[i] >= '0' && string[i] <= '9'){
+      i=i+1;
+    } 
+    else {
+      return 0;
+    }
+  } 
 return 1;
-}
-else
-{
-return 0;
-}
 }
 //Credito a Isa Kaillany e Felipe Souza
 int validaTelefone(char *telefone)

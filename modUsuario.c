@@ -55,6 +55,10 @@ char menu_usuario(void) {
 }
 
 void cadastrarusuario(void){
+  int a = 0;
+  char dia[20];
+  char mes[20];
+  char ano[20];
   system ( " clear||cls " );
   Usuario* usu;
   usu = (Usuario*) malloc(sizeof(Usuario));
@@ -63,7 +67,6 @@ void cadastrarusuario(void){
     printf(" |                   Cadastro Usuario                        | \n");
     printf(" | --------------------------------------------------------- | \n");
     printf(" | ========================================================= | \n");
-
 do
   {
     printf("Informe o nome do usuario: ");
@@ -79,15 +82,23 @@ do
 do
   {
     printf(" Digite o dia que voce nasceu: ");
-    scanf("%d", &usu->dd);
+    scanf(" %9[^\n]",dia);
     getchar();
     printf(" Digite o seu mes de nascimento: ");
-    scanf("%d", &usu->mm);
+    scanf(" %9[^\n]",mes);
     getchar();
     printf(" Digite o seu ano de nascimento: ");
-    scanf("%d", &usu->aa);
-    getchar();    
-  } while(!validaData(usu->dd, usu->mm, usu->aa));
+    scanf(" %9[^\n]",ano);
+    getchar();  
+    if ((isDigit(dia)) && (isDigit(mes)) && (isDigit(ano))){
+      usu->dd = atoi(dia);
+      usu->mm = atoi(mes);
+      usu->aa = atoi(ano);
+      if(validaData(usu->dd, usu->mm, usu->aa)){
+        a = 1;
+      }
+    }
+} while(!a);
 do
   {
     printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
@@ -99,7 +110,6 @@ gravaUsuario(usu);
 free(usu);
 printf("Pressione qualquer tecla para sair.... ");
 getchar();
-
 }
 void buscausuario(void){
 system ( " clear||cls " );
@@ -139,9 +149,11 @@ free(usu);
 printf("Pressione qualquer tecla para sair.... ");
 getchar();
 getchar();
-
 }
 void atualizarusuario(void){
+  char dia[10];
+  char mes[10];
+  char ano[10];
    system ( " clear||cls " );
    FILE* fp;
     Usuario* usu;
@@ -188,14 +200,18 @@ if (achou)
       do 
       {
         printf("Digite o dia que voce nasceu: ");
-        scanf("%d", &usu->dd);
+        scanf(" %9[^\n]",dia);
         getchar();
         printf("Digite o seu mes de nascimento: ");
-        scanf("%d", &usu->mm);
+        scanf(" %9[^\n]",mes);
         getchar();
         printf("Digite o seu ano de nascimento: ");
-        scanf("%d", &usu->aa);
+        scanf(" %9[^\n]",ano);
         getchar();   
+        usu->dd = atoi(dia);
+        usu->mm = atoi(mes);
+        usu->aa = atoi(ano);
+
       } while(!validaData(usu->dd, usu->mm, usu->aa));
       do
       {

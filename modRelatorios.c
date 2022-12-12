@@ -3,18 +3,18 @@
 #include <unistd.h>
 #include "modRelatorios.h"
 
-void modulo_relatorio(void) {
+void modulo_relatorio(void){
 char opcao;
 do
 {
-opcao = menu_relatorio();
-switch(opcao)
-{
-case '1': 	relatorio_usuario();
-break;
-case '2': 	relatorio_animal();
-break;
-} 		
+    opcao = menu_relatorio();
+    switch(opcao)
+    {
+        case '1': 	relatorio_usuario();
+        break;
+        case '2': 	relatorio_animal();
+        break;
+    } 		
 }
 while (opcao != '0');
 }
@@ -46,6 +46,7 @@ sleep(1);
 
 return op;
 }
+
 void relatorio_usuario(void) {
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");

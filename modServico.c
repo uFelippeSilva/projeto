@@ -26,35 +26,35 @@ while (opcao != '0');
 
 
 char menu_servico(void) {
-    char op;
-    system ( " clear||cls " );
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                             ///\n");
-    printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
-    printf("///                                                                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                             ///\n");
-    printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
-    printf("///           |                                                             |   ///\n");
-    printf("///           |           1. Cadastrar Servico                              |   ///\n");
-    printf("///           |           2. Pesquisar Servico                              |   ///\n");
-    printf("///           |           3. Editar Servico                                 |   ///\n");
-    printf("///           |           4. Deletar Servico                                |   ///\n");
-    printf("///           |           5. Servicos Prestados                             |   ///\n");
-    printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
-    printf("///           |                                                             |   ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
-    printf("///                                                                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("escolha oque deseja:\n");
-    scanf("%c",&op);
-    getchar();
-    printf("\n");
-    printf("\t\t\t<<< ... Loading ... >>>\n");
-    sleep(1);
+char op;
+system ( " clear||cls " );
+printf("\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
+printf("///           |                                                             |   ///\n");
+printf("///           |           1. Cadastrar Servico                              |   ///\n");
+printf("///           |           2. Pesquisar Servico                              |   ///\n");
+printf("///           |           3. Editar Servico                                 |   ///\n");
+printf("///           |           4. Deletar Servico                                |   ///\n");
+printf("///           |           5. Servicos Prestados                             |   ///\n");
+printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
+printf("///           |                                                             |   ///\n");
+printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("escolha oque deseja:\n");
+scanf("%c",&op);
+getchar();
+printf("\n");
+printf("\t\t\t<<< ... Loading ... >>>\n");
+sleep(1);
 
-    return op;
+return op;
 }
 void cadastraservico(void)
 {
@@ -72,13 +72,16 @@ do
   printf("Informe o nome do Servico: ");
   scanf(" %19[^\n]", ser->nome);
   getchar();     
-}while (!validaPalavra(ser->nome));
+}
+while (!validaPalavra(ser->nome));
 do
 {
   printf("Informe o ID do Servico: ");
   scanf(" %3[^\n]", ser->id_servico);
   getchar();   
-} while (!(ser->id_servico));
+} 
+while (!(ser->id_servico));
+
 printf("Informe o Valor do Servico: ");
 scanf(" %9[^\n]", ser->valor);
 getchar();
@@ -284,15 +287,16 @@ fwrite(ser, sizeof(Servicos), 1, fp);
 fclose(fp);
 }
 
-void exibeservico(Servicos* ser) {
+void exibeservico(Servicos* ser)
 {
-  printf("\n= = = Servico Cadastrado = = =\n");
-  printf("Nome do Servico: %s\n", ser->nome);
-  printf("ID do Servico: %s\n", ser->id_servico);
-  printf("Valor do Servico: %s\n", ser->valor);
-  printf("Tempo Estimado Para Realizacao do Servico: %s\n", ser->tempo);
-  printf("Status:%c\n", ser->status);  
-}
+  {
+    printf("\n= = = Servico Cadastrado = = =\n");
+    printf("Nome do Servico: %s\n", ser->nome);
+    printf("ID do Servico: %s\n", ser->id_servico);
+    printf("Valor do Servico: %s\n", ser->valor);
+    printf("Tempo Estimado Para Realizacao do Servico: %s\n", ser->tempo);
+    printf("Status:%c\n", ser->status);  
+  }
 }
 
 void listaServicos(void) {
@@ -326,10 +330,10 @@ getchar();
 getchar();
 }
 int buscaservico_file(char*id_busca){
-  system ( " clear||cls " );
-  FILE* fp;
-  Servicos* ser;
-  int achou;
+system ( " clear||cls " );
+FILE* fp;
+Servicos* ser;
+int achou;
   fp = fopen("servicos.dat", "rb");
 
     if (fp == NULL) {
@@ -361,4 +365,5 @@ if (achou) {
     fclose(fp);
     free(ser);
     return 0;
-}}
+}
+}

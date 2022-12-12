@@ -4,6 +4,6 @@ int validaCpf(char *cpf);
 int validaNome(char *nome);
 int validaPalavra(char *palavra);
 int validaTelefone(char *telefone);
-int isDigit(char n);
+int isDigit(char *string);
 int validaHora(int, int);
 char* cpf_busca(void);
