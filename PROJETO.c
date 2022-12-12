@@ -38,7 +38,9 @@ do
         break;
         case '4':     modulo_horarios();
         break;      
-        case '5':     modulo_sobre();    
+        case '5':     modulo_sobre();   
+        break;
+        case '6':     modulo_relatorio();
         break;                        
     } 	
 }
@@ -65,6 +67,7 @@ printf("///           |           2. Menu Servicos                              
 printf("///           |           3. Menu Animal                                    |   ///\n");
 printf("///           |           4. Menu Consultas                                 |   ///\n");
 printf("///           |           5. menu sobre Projeto Criadores                   |   ///\n");
+printf("///           |           6. Menu Relatorios                                |   ///\n");
 printf("///           |           0. Finalizar Programa                             |   ///\n");
 printf("///           |                                                             |   ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");

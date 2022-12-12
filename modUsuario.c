@@ -413,3 +413,120 @@ Usuario* usuario_buscadois(char* cpf){
   fclose(fp);
   return NULL;
 }
+
+void relatorio_ordenado(void) {
+  FILE *fp;
+  Usuario *usu;
+  UsuarioDin* novoUsu;
+  UsuarioDin* lista;
+  int tam;
+
+	if (access("usuarios.dat", F_OK) != -1) {
+
+        fp = fopen("usuarios.dat","rb");
+
+        if (fp == NULL) {
+            printf("Erro com arquivo!");
+
+        }
+
+        else {
+
+            lista = NULL;
+
+            usu = (Usuario*) malloc(sizeof(Usuario));
+
+            while(fread(usu, sizeof(Usuario), 1, fp)) {
+                
+                if (usu->status == 'a') {
+                    //Para o nome
+                    novoUsu = (UsuarioDin*) malloc(sizeof(UsuarioDin));
+
+                    tam = strlen(usu->nome) + 1;
+
+                    novoUsu->nome = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoUsu->nome, usu->nome);
+
+                    //Para o cpf
+                    tam = strlen(usu->cpf) + 1;
+
+                    novoUsu->cpf = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoUsu->cpf, usu->cpf);
+
+                    //Para o numero
+                    tam = strlen(usu->telefone) + 1;
+
+                    novoUsu->telefone = (char*) malloc(tam*sizeof(char));
+                    strcpy(novoUsu->telefone, usu->telefone);
+
+                    novoUsu->dd = usu->dd;
+                    novoUsu->mm = usu->mm;
+                    novoUsu->aa = usu->aa;
+  
+                    if (lista == NULL) {
+                        lista = novoUsu;
+                        novoUsu->prox = NULL;
+                    } 
+
+                    else if (strcmp(novoUsu->nome,lista->nome) < 0) {
+                        novoUsu->prox = lista;
+                        lista = novoUsu;
+                    } 
+
+                    else {
+                        UsuarioDin* anter = lista;
+                        UsuarioDin* atual = lista->prox;
+
+                        while ((atual != NULL) && strcmp(atual->nome, novoUsu->nome) < 0) {
+                            anter = atual;
+                            atual = atual->prox;
+                        }
+
+                        anter->prox = novoUsu;
+                        novoUsu->prox = atual;
+
+                    }
+                }
+            }
+
+            free(usu);
+
+            // Exibindo a lista de palavras
+            novoUsu = lista;
+            while (novoUsu != NULL) {
+
+                usuarioDinamico(novoUsu);
+                novoUsu = novoUsu->prox;
+
+            }
+
+            // Limpando a memória
+            novoUsu = lista;
+            while (lista != NULL) {
+                lista = lista->prox;
+                free(novoUsu->nome);
+                free(novoUsu->cpf);
+                free(novoUsu->telefone);
+                free(novoUsu);
+                novoUsu = lista;
+            }
+
+        }
+
+        fclose(fp);
+    }
+
+}
+
+void usuarioDinamico(UsuarioDin* usu) {
+    {
+    printf("\n= = = Usuario Cadastrado = = =\n");
+    printf("Nome do Usuario: %s\n", usu->nome);
+    printf("CPF do Usuario: %s\n", usu->cpf);
+    printf("Dia Que Nasceu: %d\n", usu->dd);
+    printf("Mes Que Nasceu: %d\n", usu->mm);
+    printf("Ano Que Nasceu: %d\n", usu->aa);
+    printf("Telefone do Usuario: %s\n", usu->telefone);
+    printf("Status:%c\n", usu->status);
+    }
+}

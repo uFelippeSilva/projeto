@@ -1,4 +1,5 @@
 typedef struct usuario Usuario;
+typedef struct usuarioDin UsuarioDin;
 
 struct usuario {
   char nome[51];
@@ -8,6 +9,17 @@ struct usuario {
   int  mm;
   int  aa;
   char status;
+};
+
+struct usuarioDin {
+  char* nome;
+  char* cpf;
+  char* telefone;
+  int  dd;
+  int  mm;
+  int  aa;
+  char status;
+  UsuarioDin* prox;
 };
 
 //Funçoes Mod Usuario.
@@ -23,4 +35,5 @@ void atualizarusuario(void);
 
 Usuario* usuario_busca(void);
 Usuario* usuario_buscadois(char* cpf);
-
+void relatorio_ordenado(void);
+void usuarioDinamico(UsuarioDin* usu);

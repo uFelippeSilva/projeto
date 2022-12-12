@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "modRelatorios.h"
+#include "modUsuario.h"
 
 void modulo_relatorio(void){
 char opcao;
@@ -10,7 +11,7 @@ do
     opcao = menu_relatorio();
     switch(opcao)
     {
-        case '1': 	relatorio_usuario();
+        case '1': 	relatorios_usu();
         break;
         case '2': 	relatorio_animal();
         break;
@@ -47,23 +48,50 @@ sleep(1);
 return op;
 }
 
-void relatorio_usuario(void) {
-printf("\n");
-printf("///////////////////////////////////////////////////////////////////////////////////\n");
-printf("///                                                                             ///\n");
-printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
-printf("///           |     Relatorio Usuario                                    |       ///\n");
-printf("///           |     Estara Disponivel em Breve                          |       ///\n");
-printf("///           |     Quando Nosso Professor                              |       ///\n");
-printf("///           |     Flavius Gorgonio                                    |       ///\n");
-printf("///           |     Ensinar Nos Meros Humanos                           |       ///\n");
-printf("///           |     Armazenar Dados.                                    |       ///\n");
-printf("///           |                                                         |       ///\n");
-printf("///           |                                                         |       ///\n");
-printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
-printf("///                                                                             ///\n");
-printf("///                                                                             ///\n");
-printf("///////////////////////////////////////////////////////////////////////////////////\n");
+
+void relatorios_usu(void){
+    char opcao;
+    do
+    {
+        opcao = relatorio_usuario();
+        switch(opcao)
+        {
+            case '1': 	relatorio_ordenado();
+            break;
+            case '2':   listaUsuarios();
+            break;
+
+        } 		
+    }
+    while (opcao != '0');
+}
+
+char relatorio_usuario(void) {
+    char op;
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                             ///\n");
+    printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
+    printf("///           |                                                         |       ///\n");
+    printf("///           |     1. Alfabetico dinamico                              |       ///\n");
+    printf("///           |     2. Listar Todos                                     |       ///\n");
+    printf("///           |     3.                                                  |       ///\n");
+    printf("///           |     Flavius Gorgonio                                    |       ///\n");
+    printf("///           |     Ensinar Nos Meros Humanos                           |       ///\n");
+    printf("///           |     0. Voltar.                                          |       ///\n");
+    printf("///           |                                                         |       ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
+    printf("///                                                                             ///\n");
+    printf("///                                                                             ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////////\n");
+    printf("escolha oque deseja:\n");
+    scanf("%c",&op);
+    getchar();
+    printf("\n");
+    printf("\t\t\t<<< ... Loading ... >>>\n");
+    sleep(1);
+
+    return op;
 } 
 
 void relatorio_animal(void) {
@@ -77,7 +105,6 @@ printf("///           |     Quando Nosso Professor                              
 printf("///           |     Flavius Gorgonio                                    |       ///\n");
 printf("///           |     Ensinar Nos Meros Humanos                           |       ///\n");
 printf("///           |     Armazenar Dados.                                    |       ///\n");
-printf("///           |                                                         |       ///\n");
 printf("///           |                                                         |       ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
 printf("///                                                                             ///\n");
