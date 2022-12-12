@@ -22,3 +22,5 @@ void listaUsuarios(void);
 void atualizarusuario(void);
 
 Usuario* usuario_busca(void);
+Usuario* usuario_buscadois(char* cpf);
+
