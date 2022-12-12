@@ -55,6 +55,7 @@ char menu_usuario(void) {
 }
 
 void cadastrarusuario(void){
+  Usuario* busca;
   int a = 0;
   char dia[20];
   char mes[20];
@@ -69,7 +70,7 @@ void cadastrarusuario(void){
     printf(" | ========================================================= | \n");
 do
   {
-    printf("Informe o nome do usuario: ");
+    printf("Informe o nome do usuario:");
     scanf(" %50[^\n]", usu->nome);
     getchar();     
   }while (!validaPalavra(usu->nome));
@@ -79,36 +80,52 @@ do
     scanf(" %19[^\n]", usu->cpf);
     getchar();   
   }while (!validaCpf(usu->cpf));
-do
-  {
-    printf(" Digite o dia que voce nasceu: ");
-    scanf(" %9[^\n]",dia);
-    getchar();
-    printf(" Digite o seu mes de nascimento: ");
-    scanf(" %9[^\n]",mes);
-    getchar();
-    printf(" Digite o seu ano de nascimento: ");
-    scanf(" %9[^\n]",ano);
-    getchar();  
-    if ((isDigit(dia)) && (isDigit(mes)) && (isDigit(ano))){
-      usu->dd = atoi(dia);
-      usu->mm = atoi(mes);
-      usu->aa = atoi(ano);
-      if(validaData(usu->dd, usu->mm, usu->aa)){
-        a = 1;
-      }
-    }
-} while(!a);
-do
-  {
-    printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
-    scanf(" %14[^\n]", usu->telefone);
-    getchar();    
-  }while (!validaTelefone(usu->telefone));
-usu->status = 'a';
-gravaUsuario(usu);
+
+  busca=usuario_buscadois(usu->cpf);
+
+  if (busca==NULL){
+
+    do
+      {
+        printf(" Digite o dia que voce nasceu: ");
+        scanf(" %9[^\n]",dia);
+        getchar();
+        printf(" Digite o seu mes de nascimento: ");
+        scanf(" %9[^\n]",mes);
+        getchar();
+        printf(" Digite o seu ano de nascimento: ");
+        scanf(" %9[^\n]",ano);
+        getchar();  
+
+        if ((isDigit(dia)) && (isDigit(mes)) && (isDigit(ano))){
+          usu->dd = atoi(dia);
+          usu->mm = atoi(mes);
+          usu->aa = atoi(ano);
+
+          if(validaData(usu->dd, usu->mm, usu->aa)){
+            a = 1;
+          }
+        }
+
+      } while(!a);
+
+      do
+        {
+          printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
+          scanf(" %14[^\n]", usu->telefone);
+          getchar();    
+      }while(!validaTelefone(usu->telefone));
+
+    usu->status = 'a';
+    gravaUsuario(usu);
+  }
+
+  else {
+    printf("\n Ja existe um Usuario com este cpf.");
+  }
+free(busca);
 free(usu);
-printf("Pressione qualquer tecla para sair.... ");
+printf("\n Pressione qualquer tecla para sair.... ");
 getchar();
 }
 void buscausuario(void){
@@ -223,7 +240,6 @@ if (achou)
         fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
         fwrite(usu, sizeof(Usuario), 1, fp);
         printf("\nUsuario editado com sucesso!!!\n");
-        gravaUsuario(usu);
         printf("Pressione qualquer tecla para sair... ");
         getchar();
     }
@@ -280,7 +296,6 @@ void deletarusuario(void){
             fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
             fwrite(usu, sizeof(Usuario), 1, fp);
             printf("\nUsuario excluido com sucesso!");
-            gravaUsuario(usu);
             printf("Pressione qualquer tecla para sair... ");
             getchar();
         }else{
@@ -373,6 +388,28 @@ Usuario* usuario_busca(void){
       }
   }
   free(cpf_busca_dig);
+  fclose(fp);
+  return NULL;
+}
+
+Usuario* usuario_buscadois(char* cpf){  
+  FILE* fp;
+  Usuario* usu;
+  usu = (Usuario*)malloc(sizeof(Usuario));
+  fp = fopen("usuarios.dat", "rb");
+  if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Nao e possivel continuar este programa...\n");
+      exit(1);
+  }
+
+  while(!feof(fp)) {
+      fread(usu, sizeof(Usuario), 1, fp);
+      if ((strcmp(usu->cpf, cpf) == 0) && (usu->status != 'x')){
+          fclose(fp);
+          return usu;
+      }
+  }
   fclose(fp);
   return NULL;
 }
