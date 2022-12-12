@@ -182,6 +182,7 @@ scanf("%s", cpf_busca);
 getchar();
 printf("Informe O ID Unico do Animal cadastrado:");
 scanf("%s", id_pet);
+getchar();
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
     {
         if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
@@ -192,7 +193,7 @@ while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
 if(achou)
 {
     exibepet(pet);
-    printf("Deseja realmente editar este usuario?[s/n]");
+    printf("Deseja realmente editar este Animal?[s/n] ");
     scanf("%c",&resp);
     getchar();
 if (resp == 's' || resp == 'S')

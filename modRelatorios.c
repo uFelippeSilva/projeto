@@ -88,33 +88,29 @@ void relatorios_pet(void){
 }
 
 char relatorio_usuario(void) {
-    char op;
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                             ///\n");
-    printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
-    printf("///           |                                                         |       ///\n");
-    printf("///           |     1. Alfabetico Dinamico                              |       ///\n");
-    printf("///           |     2. Listar Todos                                     |       ///\n");
-    printf("///           |     3.                                                  |       ///\n");
-    printf("///           |     Flavius Gorgonio                                    |       ///\n");
-    printf("///           |     Ensinar Nos Meros Humanos                           |       ///\n");
-    printf("///           |     0. Voltar.                                          |       ///\n");
-    printf("///           |                                                         |       ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
-    printf("///                                                                             ///\n");
-    printf("///                                                                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("escolha oque deseja:\n");
-    scanf("%c",&op);
-    getchar();
-    printf("\n");
-    printf("\t\t\t<<< ... Loading ... >>>\n");
-    sleep(1);
+char op;
+printf("\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///            = = = Sistema de agendamento de consultas para pet = = =         ///\n");
+printf("///           |                                                         |       ///\n");
+printf("///           |     1. Alfabetico Dinamico                              |       ///\n");
+printf("///           |     2. Listar Todos                                     |       ///\n");
+printf("///           |     0. Voltar.                                          |       ///\n");
+printf("///           |                                                         |       ///\n");
+printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = =        ///\n");
+printf("///                                                                             ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("escolha oque deseja:\n");
+scanf("%c",&op);
+getchar();
+printf("\n");
+printf("\t\t\t<<< ... Loading ... >>>\n");
+sleep(1);
 
-    return op;
+return op;
 } 
-
 char relatorio_animal(void) {
 char op;
 printf("\n");
