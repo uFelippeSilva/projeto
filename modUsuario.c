@@ -23,51 +23,51 @@ void modulo_usuario(void) {
     } while (opcao != '0');
 }
 char menu_usuario(void) {
-        system ( " clear||cls " );
-    char op;
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                             ///\n");
-    printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
-    printf("///                                                                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                             ///\n");
-    printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
-    printf("///           |                                                             |   ///\n");
-    printf("///           |           1. Cadastrar Usuario                              |   ///\n");
-    printf("///           |           2. Procurar Usuario                               |   ///\n");
-    printf("///           |           3. Editar Usuario                                 |   ///\n");
-    printf("///           |           4. Deletar Usuario                                |   ///\n");
-    printf("///           |           5. Listar Usuarios                                |   ///\n");
-    printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
-    printf("///           |                                                             |   ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
-    printf("///                                                                             ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////////\n");
-    printf("escolha oque deseja:\n");
-    scanf("%c",&op);
-    getchar();
-    printf("\n");
-    printf("\t\t\t<<< ... Loading ... >>>\n");
-    sleep(1);
+system ( " clear||cls " );
+char op;
+printf("\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///         SIG-Pet um sistema de agendamento de consultas para pets            ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
+printf("///           |                                                             |   ///\n");
+printf("///           |           1. Cadastrar Usuario                              |   ///\n");
+printf("///           |           2. Procurar Usuario                               |   ///\n");
+printf("///           |           3. Editar Usuario                                 |   ///\n");
+printf("///           |           4. Deletar Usuario                                |   ///\n");
+printf("///           |           5. Listar Usuarios                                |   ///\n");
+printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
+printf("///           |                                                             |   ///\n");
+printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("escolha oque deseja:\n");
+scanf("%c",&op);
+getchar();
+printf("\n");
+printf("\t\t\t<<< ... Loading ... >>>\n");
+sleep(1);
 
-    return op;
+return op;
 }
 
 void cadastrarusuario(void){
-  Usuario* busca;
-  int a = 0;
-  char dia[20];
-  char mes[20];
-  char ano[20];
-  system ( " clear||cls " );
-  Usuario* usu;
-  usu = (Usuario*) malloc(sizeof(Usuario));
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                   Cadastro Usuario                        | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ========================================================= | \n");
+Usuario* busca;
+int a = 0;
+char dia[20];
+char mes[20];
+char ano[20];
+system ( " clear||cls " );
+Usuario* usu;
+usu = (Usuario*) malloc(sizeof(Usuario));
+printf(" | ========================================================= | \n");
+printf(" | --------------------------------------------------------- | \n");
+printf(" |                   Cadastro Usuario                        | \n");
+printf(" | --------------------------------------------------------- | \n");
+printf(" | ========================================================= | \n");
 do
   {
     printf("Informe o nome do usuario:");
@@ -84,36 +84,31 @@ do
   busca=usuario_buscadois(usu->cpf);
 
   if (busca==NULL){
+    do{
+      printf(" Digite o dia que voce nasceu: ");
+      scanf(" %9[^\n]",dia);
+      getchar();
+      printf(" Digite o seu mes de nascimento: ");
+      scanf(" %9[^\n]",mes);
+      getchar();
+      printf(" Digite o seu ano de nascimento: ");
+      scanf(" %9[^\n]",ano);
+      getchar();  
 
-    do
-      {
-        printf(" Digite o dia que voce nasceu: ");
-        scanf(" %9[^\n]",dia);
-        getchar();
-        printf(" Digite o seu mes de nascimento: ");
-        scanf(" %9[^\n]",mes);
-        getchar();
-        printf(" Digite o seu ano de nascimento: ");
-        scanf(" %9[^\n]",ano);
-        getchar();  
-
-        if ((isDigit(dia)) && (isDigit(mes)) && (isDigit(ano))){
-          usu->dd = atoi(dia);
-          usu->mm = atoi(mes);
-          usu->aa = atoi(ano);
-
-          if(validaData(usu->dd, usu->mm, usu->aa)){
-            a = 1;
-          }
+      if ((isDigit(dia)) && (isDigit(mes)) && (isDigit(ano))){
+        usu->dd = atoi(dia);
+        usu->mm = atoi(mes);
+        usu->aa = atoi(ano);
+        if(validaData(usu->dd, usu->mm, usu->aa)){
+          a = 1;
         }
+      }
+    } while(!a);
 
-      } while(!a);
-
-      do
-        {
-          printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
-          scanf(" %14[^\n]", usu->telefone);
-          getchar();    
+      do{
+        printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
+        scanf(" %14[^\n]", usu->telefone);
+        getchar();    
       }while(!validaTelefone(usu->telefone));
 
     usu->status = 'a';
@@ -130,7 +125,6 @@ getchar();
 }
 void buscausuario(void){
 system ( " clear||cls " );
-
 FILE* fp;
 Usuario* usu;
 int achou;
@@ -138,29 +132,25 @@ char cpf_busca[20];
 fp = fopen("usuarios.dat", "rb");
   if (fp == NULL)
     {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
+      printf("Ops! Erro na abertura do arquivo!\n");
+      exit(1);
     }
   printf("\n = Buscar Usuario = \n"); 
   printf("Informe CPF: "); 
   scanf(" %19[^\n]", cpf_busca);
   usu = (Usuario*) malloc(sizeof(Usuario));
   achou = 0;
-while((!achou) && (fread(usu,sizeof(Usuario), 1, fp))) 
-  {
-      if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status != 'x'))
-      {
-        achou =1;
-      }
+while((!achou) && (fread(usu,sizeof(Usuario), 1, fp))) {
+  if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status != 'x')){
+    achou =1;
   }
-if (achou)
-  {
-    exibeusuario(usu);
-  }
-else
-  {
-    printf("Os dados do usuario nao foram encontrados\n");
-  }
+}
+if (achou){
+  exibeusuario(usu);
+}
+else{
+  printf("Os dados do usuario nao foram encontrados\n");
+}
 fclose(fp);
 free(usu);
 printf("Pressione qualquer tecla para sair.... ");
@@ -168,38 +158,36 @@ getchar();
 getchar();
 }
 void atualizarusuario(void){
-  char dia[10];
-  char mes[10];
-  char ano[10];
-   system ( " clear||cls " );
-   FILE* fp;
-    Usuario* usu;
-    int achou;
-    char resp;
-    char cpf_busca[20];
-    usu = (Usuario*) malloc(sizeof(Usuario));
-    achou = 0;
-    fp = fopen("usuarios.dat", "r+b");
-    if (fp == NULL) {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar o programa...\n");
-        exit(1);
+char dia[10];
+char mes[10];
+char ano[10];
+system ( " clear||cls " );
+FILE* fp;
+Usuario* usu;
+int achou;
+char resp;
+char cpf_busca[20];
+usu = (Usuario*) malloc(sizeof(Usuario));
+achou = 0;
+fp = fopen("usuarios.dat", "r+b");
+if (fp == NULL) {
+  printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+  printf("Nao e possivel continuar o programa...\n");
+  exit(1);
+}
+printf(" | ========================================================= | \n");
+printf(" | --------------------------------------------------------- | \n");
+printf(" | ------------------- Atualizar usuario ------------------- | \n");
+printf(" | --------------------------------------------------------- | \n");
+printf(" | ========================================================= | \n");
+printf("Digite o CPF do usuario cadastrado: ");
+scanf("%s", cpf_busca);
+getchar();
+while((!achou) && (fread(usu, sizeof(Usuario), 1, fp))){
+  if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status == 'a')){
+    achou = 1;
   }
-    printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ------------------- Atualizar usuario ------------------- | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" | ========================================================= | \n");
-    printf("Digite o CPF do usuario cadastrado: ");
-    scanf("%s", cpf_busca);
-    getchar();
-while((!achou) && (fread(usu, sizeof(Usuario), 1, fp)))
-  {
-  if ((strcmp(usu->cpf, cpf_busca) == 0) && (usu->status == 'a'))
-    {
-      achou = 1;
-    }
-  }
+}
 if (achou)
   {
     exibeusuario(usu);
@@ -274,11 +262,11 @@ void deletarusuario(void){
     }
     usu = (Usuario*) malloc(sizeof(Usuario));
     printf(" | ============================================================== | \n");
-    printf(" | -------------------------------------------------------------- | \n");
-    printf(" | ---------------------- Excluir usuario ----------------------- | \n");
-    printf(" | -------------------------------------------------------------- | \n");
+    printf(" |                                                                | \n");
+    printf(" |                        Excluir Usuário                         | \n");
+    printf(" |                                                                | \n");
     printf(" | ============================================================== | \n");
-    printf("Informe o CPF do usuario que você quer excluir: ");
+    printf("Informe o CPF do Usuáario que você quer excluir: ");
     scanf("%s", cpf_busca);
     getchar();
     achou=0;
@@ -289,21 +277,21 @@ void deletarusuario(void){
     }
     if (achou){
         exibeusuario(usu);
-        printf("Deseja realmente excluir os dados deste usuario? (s/n)");
+        printf("Deseja realmente excluir os dados deste Usuário? (s/n)");
         scanf("%c", &resp);
         if (resp == 's' || resp == 'S'){
             usu->status = 'x';
             fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
             fwrite(usu, sizeof(Usuario), 1, fp);
-            printf("\nUsuario excluido com sucesso!");
+            printf("\n  Usuário Excluido com Sucesso!");
             printf("Pressione qualquer tecla para sair... ");
             getchar();
         }else{
-            printf("\nTudo bem, os dados nao foram alterados!");
+            printf("\n  Tudo bem, os dados nao foram alterados!");
             getchar();
         }
         }else{
-        printf("O usuario nao foi encontrado!");
+        printf("O Usuário Não foi Encontrado!");
         getchar();
     }
     free(usu);
@@ -318,7 +306,7 @@ void gravaUsuario(Usuario* usu) {
   fp = fopen("usuarios.dat", "ab");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
+    printf("Não é Possível continuar este programa...\n");
     exit(1);
   }
   fwrite(usu, sizeof(Usuario), 1, fp);
@@ -328,16 +316,16 @@ void listaUsuarios(void) {
   system ( " clear||cls " );
   FILE* fp;
   Usuario* usu;
-  printf("\n = Lista de Usuarios = \n"); 
+  printf("\n = Lista de Usuários = \n"); 
   usu = (Usuario*) malloc(sizeof(Usuario));
   fp = fopen("usuarios.dat", "rb");
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
+    printf("Nãp é Possível continuar este programa...\n");
     exit(1);
   }
     printf("\n\n");
-    printf(" | ----------------------- Exibe usuario ------------------- | \n");
+    printf(" | ----------------------- Exibe Usuário ------------------- | \n");
     printf(" |                                                           | \n");
     printf(" | --------------------------------------------------------- | \n");
   while(fread(usu, sizeof(Usuario), 1, fp)) {
@@ -355,11 +343,11 @@ void listaUsuarios(void) {
 void exibeusuario(Usuario* usu) {
   system ("clear||cls");
   {
-  printf("\n= = = Usuario Cadastrado = = =\n");
+  printf("\n= = = Usuário Cadastrado = = =\n");
   printf("Nome do Usuario: %s\n", usu->nome);
   printf("CPF do Usuario: %s\n", usu->cpf);
   printf("Dia Que Nasceu: %d\n", usu->dd);
-  printf("Mes Que Nasceu: %d\n", usu->mm);
+  printf("Mês Que Nasceu: %d\n", usu->mm);
   printf("Ano Que Nasceu: %d\n", usu->aa);
   printf("Telefone do Usuario: %s\n", usu->telefone);
   printf("Status:%c\n", usu->status);
@@ -378,42 +366,42 @@ Usuario* usuario_busca(void){
   fp = fopen("usuarios.dat", "rb");
   if (fp == NULL) {
       printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Nao e possivel continuar este programa...\n");
+      printf("Não é Possível continuar este programa...\n");
       exit(1);
   }
 
   while(!feof(fp)) {
-      fread(usu, sizeof(Usuario), 1, fp);
-      if ((strcmp(usu->cpf, cpf_busca_dig) == 0) && (usu->status != 'x')){
-          fclose(fp);
-          return usu;
-      }
+  fread(usu, sizeof(Usuario), 1, fp);
+  if ((strcmp(usu->cpf, cpf_busca_dig) == 0) && (usu->status != 'x')){
+      fclose(fp);
+      return usu;
   }
-  free(cpf_busca_dig);
-  fclose(fp);
-  return NULL;
+}
+free(cpf_busca_dig);
+fclose(fp);
+return NULL;
 }
 
 Usuario* usuario_buscadois(char* cpf){  
-  FILE* fp;
-  Usuario* usu;
-  usu = (Usuario*)malloc(sizeof(Usuario));
-  fp = fopen("usuarios.dat", "rb");
-  if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Nao e possivel continuar este programa...\n");
-      exit(1);
-  }
+FILE* fp;
+Usuario* usu;
+usu = (Usuario*)malloc(sizeof(Usuario));
+fp = fopen("usuarios.dat", "rb");
+if (fp == NULL) {
+  printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+  printf("Não é Possível continuar este programa...\n");
+  exit(1);
+}
 
-  while(!feof(fp)) {
-      fread(usu, sizeof(Usuario), 1, fp);
-      if ((strcmp(usu->cpf, cpf) == 0) && (usu->status != 'x')){
-          fclose(fp);
-          return usu;
-      }
+while(!feof(fp)) {
+fread(usu, sizeof(Usuario), 1, fp);
+if ((strcmp(usu->cpf, cpf) == 0) && (usu->status != 'x')){
+    fclose(fp);
+    return usu;
   }
-  fclose(fp);
-  return NULL;
+}
+fclose(fp);
+return NULL;
 }
 
 void relatorio_ordenado(void) {
@@ -423,7 +411,6 @@ Usuario *usu;
 UsuarioDin* novoUsu;
 UsuarioDin* lista;
 int tam;
-
 if (access("usuarios.dat", F_OK) != -1) {
 fp = fopen("usuarios.dat","rb");
   if (fp == NULL) {
@@ -508,13 +495,13 @@ fp = fopen("usuarios.dat","rb");
 void usuarioDinamico(UsuarioDin* usu) {
   system ("clear||cls");
   {
-  printf("\n= = = Usuario Cadastrado = = =\n");
-  printf("Nome do Usuario: %s\n", usu->nome);
-  printf("CPF do Usuario: %s\n", usu->cpf);
+  printf("\n= = = Usuário Cadastrado = = =\n");
+  printf("Nome do Usuário: %s\n", usu->nome);
+  printf("CPF do Usuário: %s\n", usu->cpf);
   printf("Dia Que Nasceu: %d\n", usu->dd);
-  printf("Mes Que Nasceu: %d\n", usu->mm);
+  printf("Mês Que Nasceu: %d\n", usu->mm);
   printf("Ano Que Nasceu: %d\n", usu->aa);
-  printf("Telefone do Usuario: %s\n", usu->telefone);
+  printf("Telefone do Usuário: %s\n", usu->telefone);
   printf("Status:%c\n", usu->status);
   }
 }

@@ -49,12 +49,12 @@ void tela_sobre(void) {
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
-printf("///             As clinicas para atendimento a pequenos animais                 ///\n");
-printf("///              sao cada vez mais populares.                                   ///\n");
+printf("///             As clínicas para atendimento a pequenos animais                 ///\n");
+printf("///              são cada vez mais populares.                                   ///\n");
 printf("///             O presente projeto tem como objetivo propor um progama          ///\n");
-printf("///              de computaodr que implemente funcionalidades basicas           ///\n");
+printf("///              de computador que implemente funcionalidades básicas           ///\n");
 printf("///              relacionas ao agendamento de consultas de pequenos animais,    ///\n");
-printf("///              armazenando tanto informacoes do pet quanto do seu dono.       ///\n");
+printf("///              armazenando tanto informações do pet quanto do seu dono.       ///\n");
 printf("///                                                                             ///\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 }

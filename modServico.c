@@ -160,54 +160,52 @@ fp = fopen("servicos.dat", "r+b");
 if (fp == NULL)
 {
   printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-  printf("Nao e possivel continuar o programa...\n");
+  printf("Não é Póssivel Continuar o Programa...\n");
   exit(1);
 }
   printf(" | ========================================================= | \n");
-  printf(" | --------------------------------------------------------- | \n");
-  printf(" | ------------------- Atualizar Servico ------------------- | \n");
-  printf(" | --------------------------------------------------------- | \n");
+  printf(" |                                                           | \n");
+  printf(" |                     Atualizar Serviço                     | \n");
+  printf(" |                                                           | \n");
   printf(" | ========================================================= | \n");
-  printf("Digite o ID do Servico cadastrado:");
+  printf("Digite o ID do Serviço Cadastrado:");
   scanf("%s", id_busca);
   getchar();
-while((!achou) && (fread(ser, sizeof(Servicos), 1, fp)))
-  {
-    if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status == 'a'))
-    {
-      achou = 1;
-    }
+while((!achou) && (fread(ser, sizeof(Servicos), 1, fp))){
+  if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status == 'a')){
+    achou = 1;
   }
+}
 if (achou) 
 {
 exibeservico(ser);
-printf(" Deseja realmente editar este Servico? [s/n] ");
+printf(" Deseja realmente editar este Serviço? [s/n] ");
 scanf("%c", &resp);
 getchar();
 if (resp == 's' || resp == 'S')
   { 
-    printf("Informe o Novo Valor Do Servico: ");
+    printf("Informe o Novo Valor Do Serviço: ");
     scanf(" %9[^\n]", ser->valor);
     getchar();    
-    printf("Informe o Tempo Que Estima-se Gastar neste Servico:");
+    printf("Informe o Tempo Que Estima-se Gastar neste Serviço:");
     scanf(" %9[^\n]", ser->tempo);
     getchar();
     ser->status = 'a';
     fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
     fwrite(ser, sizeof(Servicos), 1, fp);
-    printf("\n Servico editado com sucesso!!!\n");
+    printf("\n Serviço Editado com Sucesso!!!\n");
     gravaServico(ser);
     printf("Pressione qualquer tecla para sair... ");
     getchar();
   }
   else
     {
-      printf("Os dados nao foram alterados!\n");
+      printf("Os Dados Não Foram Alterados!\n");
       printf("Pressione qualquer tecla para sair...");
       getchar();
     }
     } else {
-    printf("Servico nao encontrado!\n");
+    printf("Serviço Não encontrado!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
   }
@@ -231,11 +229,11 @@ fp = fopen("servicos.dat", "r+b");
     }
   ser = (Servicos*) malloc(sizeof(Servicos));
   printf(" | ============================================================== | \n");
-  printf(" | -------------------------------------------------------------- | \n");
-  printf(" | ---------------------- Excluir Servico ----------------------- | \n");
-  printf(" | -------------------------------------------------------------- | \n");
+  printf(" |                                                                | \n");
+  printf(" |                        Excluir Serviço                         | \n");
+  printf(" |                                                                | \n");
   printf(" | ============================================================== | \n");
-  printf("Informe o ID do Servico que voce quer excluir:");
+  printf("Informe o ID do Servico que Você quer Excluir:");
   scanf("%s", id_busca);
   getchar();
   achou=0;
@@ -248,26 +246,26 @@ fp = fopen("servicos.dat", "r+b");
   if (achou)
   {
   exibeservico(ser);
-  printf("Deseja realmente excluir os dados deste Servico? (s/n)");
+  printf("Deseja Realmente Excluir os Dados Deste Serviço? (s/n)");
   scanf("%c", &resp);
     if (resp == 's' || resp == 'S')
       {
       ser->status = 'x';
       fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
       fwrite(ser, sizeof(Servicos), 1, fp);
-      printf("\n Servico excluido com sucesso!");
+      printf("\n Serviço Excluido com Sucesso!");
       gravaServico(ser);
       printf("Pressione qualquer tecla para sair... ");
       getchar();
       }
     else
       {
-        printf("\nTudo bem, os dados nao foram alterados!");
+        printf("\nTudo Bem, os Dados Não Foram Alterados!");
       }
   }
   else
     {
-      printf("O usuario nao foi encontrado!");
+      printf("O Usuário Não foi Encontrado!");
     }
   free(ser);
   fclose(fp);
@@ -291,11 +289,11 @@ fclose(fp);
 void exibeservico(Servicos* ser){
   system("clear||cls");
   {
-    printf("\n= = = Servico Cadastrado = = =\n");
-    printf("Nome do Servico: %s\n", ser->nome);
-    printf("ID do Servico: %s\n", ser->id_servico);
-    printf("Valor do Servico: %s\n", ser->valor);
-    printf("Tempo Estimado Para Realizacao do Servico: %s\n", ser->tempo);
+    printf("\n= = = Serviço Cadastrado = = =\n");
+    printf("Nome do Serviço: %s\n", ser->nome);
+    printf("ID do Serviço: %s\n", ser->id_servico);
+    printf("Valor do Serviço: %s\n", ser->valor);
+    printf("Tempo Estimado Para Realização do Serviço: %s\n", ser->tempo);
     printf("Status:%c\n", ser->status);  
   }
 }
@@ -304,16 +302,16 @@ void listaServicos(void) {
 system ( " clear||cls " );
 FILE* fp;
 Servicos* ser;
-printf("\n = Lista de Servicos prestados. = \n"); 
+printf("\n = Lista de Serviços Prestados. = \n"); 
 ser = (Servicos*) malloc(sizeof(Servicos));
 fp = fopen("servicos.dat", "rb");
 if (fp == NULL)
 {
-printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-printf("Nao e possivel continuar este programa...\n");
+printf("Ops! Ocorreu um Erro na Abertura do Arquivo!\n");
+printf("Não é Póssivel Continuar este Programa...\n");
 exit(1);
 printf("\n\n");
-printf(" | ---------------------- Exibe Servicos Cadastrado -------------------- | \n");
+printf(" | ---------------------- Exibe Serviços Cadastrado -------------------- | \n");
 printf(" |                                                                       | \n");
 printf(" | --------------------------------------------------------------------- | \n");
 }
@@ -338,14 +336,14 @@ int achou;
   fp = fopen("servicos.dat", "rb");
 
     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
+        printf("Ops! Erro na Abertura do Arquivo!\n");
         exit(1);
     }
 
     printf(" | ========================================================= | \n");
-    printf(" | --------------------------------------------------------- | \n");
-    printf(" |                   Buscar Servico                          | \n");
-    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                                                           | \n");
+    printf(" |                   Buscar Serviço                          | \n");
+    printf(" |                                                           | \n");
     printf(" | ========================================================= | \n");
 
   ser = (Servicos*) malloc(sizeof(Servicos));
@@ -362,7 +360,7 @@ if (achou) {
     free(ser);
     return 1;
 }else {
-    printf("Os dados do usuário  não foram encontrados\n");
+    printf("Os Dados do Usuário Não Foram Encontrados\n");
     fclose(fp);
     free(ser);
     return 0;
