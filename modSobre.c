@@ -7,14 +7,14 @@ void modulo_sobre(void) {
 char opcao;
 do
 {
-opcao = menu_sobre();
-switch(opcao)
-{
-case '1': 	tela_dupla();
-break;
-case '2': 	tela_sobre();
-break;
-} 		
+    opcao = menu_sobre();
+    switch(opcao)
+    {
+        case '1': 	tela_sobre();
+                    break;
+        case '2': 	tela_dupla();
+                    break;
+    } 		
 }
 while (opcao != '0');
 }
@@ -31,8 +31,8 @@ printf("////////////////////////////////////////////////////////////////////////
 printf("///                                                                             ///\n");
 printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
 printf("///           |                                                             |   ///\n");
-printf("///           |           1. Dupla Do Projeto                               |   ///\n");
-printf("///           |           2. Sobre o Projeto                                |   ///\n");
+printf("///           |           1. Sobre o Projeto                                |   ///\n");
+printf("///           |           2. Dupla Do Projeto                               |   ///\n");
 printf("///           |           0. Voltar Menu Principal                          |   ///\n");
 printf("///           |                                                             |   ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -42,14 +42,10 @@ printf("escolha oque deseja:\n");
 scanf("%c",&op);
 getchar();
 printf("\n");
-printf("\t\t\t<<< ... Loading ... >>>\n");
-sleep(1);
-getchar();
 return op;
 }
 
 void tela_sobre(void) {
-system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
@@ -63,7 +59,6 @@ printf("///                                                                     
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 }
 void tela_dupla(void) {
-system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");

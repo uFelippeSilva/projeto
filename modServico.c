@@ -276,6 +276,7 @@ fp = fopen("servicos.dat", "r+b");
 }
 
 void gravaServico(Servicos* ser) {
+system("clear||cls");
 FILE* fp;
 fp = fopen("servicos.dat", "ab");
 if (fp == NULL)
@@ -287,8 +288,8 @@ fwrite(ser, sizeof(Servicos), 1, fp);
 fclose(fp);
 }
 
-void exibeservico(Servicos* ser)
-{
+void exibeservico(Servicos* ser){
+  system("clear||cls");
   {
     printf("\n= = = Servico Cadastrado = = =\n");
     printf("Nome do Servico: %s\n", ser->nome);

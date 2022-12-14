@@ -23,10 +23,10 @@ do
     break;
     }
 }
-while (opcao != '0');
-}
+while (opcao != '0');}
 char menu_horarios(void){
 char op;
+system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
@@ -57,6 +57,7 @@ return op;
 }
 
 void cadastrar_horario(void){
+system("clear||cls");
 Horario* hora;
 hora = (Horario*) malloc(sizeof(Horario)); 
 int a;
@@ -193,6 +194,7 @@ fclose(fp);
 }
 
 void busca_consulta(void){
+system("clear||cls");
 FILE* fp;
 Horario* hora;
 int achou;
@@ -289,7 +291,7 @@ printf("Pressione qualquer tecla para sair.... ");
 getchar();
 }
 
-void gravaConsulta(Horario* hora) {
+void gravaConsulta(Horario* hora){
 FILE* fp;
 fp = fopen("consultas.dat", "ab");
 if (fp == NULL)
@@ -302,16 +304,16 @@ fwrite(hora, sizeof(Horario), 1, fp);
 fclose(fp);
 }
 
-void exibeconsulta(Horario* hora)
-{
-    {
-    printf("\n= = = Consulta Cadastrada = = =\n");
-    printf("CPF dono do animal: %s\n", hora->cpf_busca);
-    printf("id do animal: %s\n", hora->id_animal);
-    printf("Dia da  consulta: %d\n", hora->dd);
-    printf("Mes da consulta: %d\n", hora->mm);
-    printf("Ano da consulta : %d\n", hora->aa);
-    printf("Hora da consulta: %d\n", hora->hora);
-    printf("Minuto da consulta: %d\n", hora->min);
-    }
+void exibeconsulta(Horario* hora){
+system("clear||cls");
+  {
+  printf("\n= = = Consulta Cadastrada = = =\n");
+  printf("CPF dono do animal: %s\n", hora->cpf_busca);
+  printf("id do animal: %s\n", hora->id_animal);
+  printf("Dia da  consulta: %d\n", hora->dd);
+  printf("Mes da consulta: %d\n", hora->mm);
+  printf("Ano da consulta : %d\n", hora->aa);
+  printf("Hora da consulta: %d\n", hora->hora);
+  printf("Minuto da consulta: %d\n", hora->min);
+  }
 }

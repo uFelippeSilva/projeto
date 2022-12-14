@@ -23,6 +23,7 @@ while (opcao != '0');
 
 char menu_relatorio(void) {
 char op;
+system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
@@ -89,6 +90,7 @@ void relatorios_pet(void){
 
 char relatorio_usuario(void) {
 char op;
+system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
@@ -113,6 +115,7 @@ return op;
 } 
 char relatorio_animal(void) {
 char op;
+system("clear||cls");
 printf("\n");
 printf("///////////////////////////////////////////////////////////////////////////////////\n");
 printf("///                                                                             ///\n");
