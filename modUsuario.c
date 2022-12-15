@@ -490,10 +490,10 @@ fp = fopen("usuarios.dat","rb");
       }
     fclose(fp);
   }
+getchar();
 }
 
 void usuarioDinamico(UsuarioDin* usu) {
-  system ("clear||cls");
   {
   printf("\n= = = Usuário Cadastrado = = =\n");
   printf("Nome do Usuário: %s\n", usu->nome);

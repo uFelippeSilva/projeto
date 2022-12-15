@@ -8,7 +8,6 @@ struct servicos {
   char status;
 };
 
-
 void modulo_servico(void);
 char menu_servico(void);
 void cadastraservico(void);

@@ -81,9 +81,9 @@ strcpy(pet-> cpf, usu -> cpf);
 strcpy(cpf_busca_dig, pet->cpf);
 system("cls||clear");
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
 printf(" |                   Cadastrar Animal                        | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
 do
 {
@@ -104,6 +104,7 @@ scanf(" %9[^\n]", pet->codigo);
 getchar();
 printf("Informe o Sexo do Animal (M/F): ");
 scanf("%c", &pet->sexo);
+getchar();
 pet->sexo = toupper(pet->sexo);
 pet->status = 'a';
 gravaPet(pet);
@@ -120,34 +121,32 @@ int achou;
 char cpf_busca[20];
 char id_pet[10];
 fp = fopen("animais.dat", "rb");
-if (fp == NULL)
-    {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
-    }
+if (fp == NULL){
+    printf("Ops! Erro na abertura do arquivo!\n");
+    exit(1);
+}
 printf("\n = Buscar PET = \n"); 
 printf("Informe CPF Do Dono Do Animal: "); 
 scanf(" %19[^\n]", cpf_busca);
+getchar();
 printf("Informe Codigo do Animal:");
 scanf(" %9[^\n]", id_pet);
+getchar();
 pet = (Animal*) malloc(sizeof(Animal));
 achou = 0;
-while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
+while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
     {
-        if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
-        {
-            achou=1;
-        }
+        achou=1;
     }
-if (achou)
-    {
-        exibepet(pet);
-    }
-else
-    {
-        printf("Os dados do Pet não foram encontrados\n");
-        getchar();
-    }
+}
+if(achou){
+    exibepet(pet);
+}
+else{
+    printf("Os dados do Pet não foram encontrados\n");
+    getchar();
+}
 fclose(fp);
 free(pet);
 printf("Pressione qualquer tecla para sair.... ");
@@ -166,16 +165,15 @@ char id_pet[10];
 pet = (Animal*) malloc(sizeof(Animal));
 achou=0;
 fp= fopen("animais.dat","r+b");
-if (fp == NULL)
-    {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Não e possível continuar o programa...\n");
-        exit(1);
-    }
+if (fp == NULL){
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não e possível continuar o programa...\n");
+    exit(1);
+}
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" | ------------------- Atualizar Animal -------------------  | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                     Atualizar Animal                      | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
 printf("Informe o CPF Do Dono do Animal Cadastrado:");
 scanf("%s", cpf_busca);
@@ -183,13 +181,12 @@ getchar();
 printf("Informe O ID Único do Animal Cadastrado:");
 scanf("%s", id_pet);
 getchar();
-while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
+while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
+if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
     {
-        if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
-        {
-            achou=1;
-        }
+        achou=1;
     }
+}
 if(achou)
 {
     exibepet(pet);
@@ -198,48 +195,49 @@ if(achou)
     getchar();
 if (resp == 's' || resp == 'S')
 {
-        do
-        {
-            printf("Informe o Nome do Animal: ");
-            scanf(" %19[^\n]", pet->animal);
-            getchar();        
-        }
-        while(!validaPalavra(pet->animal)); 
-        do
-        {
-            printf("Informe o CPF do Dono do Animal: ");
-            scanf(" %20[^\n]", pet->cpf);
-            getchar();       
-        }
-        while (!validaCpf(pet->cpf));
-        do
-        {
-            printf("Informe A Raça do Animal: ");
-            scanf(" %19[^\n]", pet->raca);
-            getchar();    
-        }
-        while (!validaPalavra(pet->raca));
-        
-        printf("Informe o Código Único do Animal: ");
-        scanf("%s", pet->codigo);
-        getchar();
-        printf("Informe o Sexo do Animal (M/F): ");
-        scanf("%c", &pet->sexo);
-        pet->status = 'a';
-        fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
-        fwrite(pet, sizeof(Animal), 1, fp);
-        printf("\nPet editado com sucesso!!!\n");
-        gravaPet(pet);
-        printf("Pressione qualquer tecla para sair...");
-        getchar();
+    do
+    {
+        printf("Informe o Nome do Animal: ");
+        scanf(" %19[^\n]", pet->animal);
+        getchar();        
+    }
+    while(!validaPalavra(pet->animal)); 
+    do
+    {
+        printf("Informe o CPF do Dono do Animal: ");
+        scanf(" %20[^\n]", pet->cpf);
+        getchar();       
+    }
+    while (!validaCpf(pet->cpf));
+    do
+    {
+        printf("Informe A Raça do Animal: ");
+        scanf(" %19[^\n]", pet->raca);
+        getchar();    
+    }
+    while (!validaPalavra(pet->raca));
+    
+    printf("Informe o Código Único do Animal: ");
+    scanf("%s", pet->codigo);
+    getchar();
+    printf("Informe o Sexo do Animal (M/F): ");
+    scanf("%c", &pet->sexo);
+    getchar();
+    pet->status = 'a';
+    fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
+    fwrite(pet, sizeof(Animal), 1, fp);
+    printf("\nPet editado com sucesso!!!\n");
+    gravaPet(pet);
+    printf("Pressione qualquer tecla para sair...");
+    getchar();
 } 
-        else
-        {
+    else
+    {
         printf("Tudo bem, os dados não foram alterados! \n");
         printf("Aperte Enter para continuar!\n");
         getchar();
         getchar();
-        }
+    }
 }
 else
 {
@@ -266,9 +264,9 @@ if(fp == NULL)
     }
 pet = (Animal*) malloc(sizeof(Animal));
 printf(" | ============================================================== | \n");
-printf(" | -------------------------------------------------------------- | \n");
-printf(" | ---------------------- Excluir Animal ------------------------ | \n");
-printf(" | -------------------------------------------------------------- | \n");
+printf(" |                                                                | \n");
+printf(" |                        Excluir Animal                          | \n");
+printf(" |                                                                | \n");
 printf(" | ============================================================== | \n");
 printf("Informe o CPF do Dono do Animal que Você quer Excluir: ");
 scanf("%s", cpf_busca);
@@ -277,18 +275,18 @@ printf("Informe ID Único do Animal que Você deseja Excluir:");
 scanf("%s", id_pet);
 getchar();  
 achou=0;    
-while ((!achou) && (fread(pet, sizeof(Animal), 1, fp)))
+while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
     {
-        if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
-        {
-            achou=1;
-        }
+        achou=1;
     }
+}
 if(achou)
 {
 exibepet(pet);
 printf("Deseja realmente excluir os dados deste animal?(s/n)");
 scanf("%c", &resp);
+getchar();
     if (resp == 's' || resp == 'S')
     {
         pet->status = 'x';
@@ -317,12 +315,11 @@ getchar();
 void gravaPet(Animal* pet){
 FILE* fp;
 fp = fopen("animais.dat","ab");
-if (fp == NULL)
-    {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Não e Póssivel continuar este programa...\n");
-        exit(1);
-    }
+if (fp == NULL){
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não e Póssivel continuar este programa...\n");
+    exit(1);
+}
 fwrite(pet, sizeof(Animal),1,fp);
 fclose(fp);    
 }
@@ -333,23 +330,21 @@ FILE* fp;
 Animal* pet;
 pet = (Animal*) malloc(sizeof(Animal));
 fp = fopen("animais.dat","rb");
-if (fp == NULL)
-    {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Não e Póssivel continuar este programa...\n");
-        exit(1);
-    }
+if (fp == NULL){
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não e Póssivel continuar este programa...\n");
+    exit(1);
+}
 printf("\n\n");
 printf(" | ----------------------- Lista Pets ---------------------- | \n");
 printf(" |                                                           | \n");
 printf(" | --------------------------------------------------------- | \n");
-while(fread(pet, sizeof(Animal), 1, fp))
+while(fread(pet, sizeof(Animal), 1, fp)){
+    if (pet->status != 'x')
     {
-        if (pet->status != 'x')
-                {
-                exibepet(pet);
-                }
+        exibepet(pet);
     }
+}
 fclose(fp);
 free(pet);
 getchar();
@@ -369,29 +364,29 @@ void exibepet(Animal* pet)
 }
 
 int busca_petfile(char* cpf_busca, char* id_pet){
-    system ( " clear||cls " );
-    FILE* fp;
-    Animal* pet;
-    int achou;
-    fp = fopen("animais.dat", "rb");
-     if (fp == NULL) {
-        printf("Ops! Erro na abertura do arquivo!\n");
-        exit(1);
-    }
-  pet = (Animal*) malloc(sizeof(Animal));
-  achou = 0;
+system ( " clear||cls " );
+FILE* fp;
+Animal* pet;
+int achou;
+fp = fopen("animais.dat", "rb");
+if (fp == NULL) {
+    printf("Ops! Erro na abertura do arquivo!\n");
+    exit(1);
+}
+pet = (Animal*) malloc(sizeof(Animal));
+achou = 0;
  while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
     if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a'))){
         achou=1;
     }
  }
 
-if (achou) {
+if (achou){
     fclose(fp);
     free(pet);
     getchar();
     return 1;
-}else {
+}else{
     printf("Os dados do Pet  não foram encontrados\n");
     fclose(fp);
     free(pet);
@@ -406,12 +401,11 @@ FILE* fp;
 Animal* pet;
 pet = (Animal*) malloc(sizeof(Animal));
 fp = fopen("animais.dat","rb");
-if (fp == NULL)
-    {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Não e Póssivel continuar este programa...\n");
-        exit(1);
-    }
+if (fp == NULL){
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não e Póssivel continuar este programa...\n");
+    exit(1);
+}
 printf("\n\n");
 printf(" | ----------------------- Lista Pets ---------------------- | \n");
 printf(" |                                                           | \n");

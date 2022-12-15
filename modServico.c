@@ -248,6 +248,7 @@ fp = fopen("servicos.dat", "r+b");
   exibeservico(ser);
   printf("Deseja Realmente Excluir os Dados Deste Serviço? (s/n)");
   scanf("%c", &resp);
+  getchar();
     if (resp == 's' || resp == 'S')
       {
       ser->status = 'x';

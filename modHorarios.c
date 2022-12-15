@@ -131,9 +131,9 @@ if(fp == NULL)
   exit(1);
 }
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" | ------------------- Atualizar Consulta -------------------| \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                     Atualizar Consulta                    | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
 printf("Digite o ID da Consulta cadastrado: ");
 scanf("%s", id_busca);
@@ -208,6 +208,7 @@ if (fp == NULL)
 printf("\n = Buscar Consulta = \n"); 
 printf("Informe ID da consulta: "); 
 scanf(" %6[^\n]", id_busca);
+getchar();
 hora = (Horario*) malloc(sizeof(Horario));
 achou = 0;
 while((!achou) && (fread(hora,sizeof(Horario), 1, fp))) 
@@ -246,9 +247,9 @@ if (fp == NULL)
 }
 hora = (Horario*) malloc(sizeof(Horario));
 printf(" | ============================================================== | \n");
-printf(" | -------------------------------------------------------------- | \n");
-printf(" | ---------------------- Excluir Usuário ----------------------- | \n");
-printf(" | -------------------------------------------------------------- | \n");
+printf(" |                                                                | \n");
+printf(" |                        Excluir Consulta                        | \n");
+printf(" |                                                                | \n");
 printf(" | ============================================================== | \n");
 printf("Informe o ID da consulta: ");
 scanf("%s", id_busca);
