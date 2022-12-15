@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include "modServico.h"
 #include "validacaoProjeto.h"
+
+char decimais[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 void modulo_servico(void) {
     char opcao;
     do {
@@ -58,6 +60,9 @@ return op;
 }
 void cadastraservico(void)
 {
+  char valor[10];
+  int tam;
+
 system ( " clear||cls " );
 Servicos* ser;
 ser = (Servicos*) malloc(sizeof(Servicos));
@@ -74,17 +79,22 @@ do
   getchar();     
 }
 while (!validaPalavra(ser->nome));
-do
-{
-  printf("Informe o ID do Servico: ");
-  scanf(" %3[^\n]", ser->id_servico);
-  getchar();   
-} 
-while (!(ser->id_servico));
 
+ser->id_servico=idServico();
+do{
 printf("Informe o Valor do Servico: ");
-scanf(" %9[^\n]", ser->valor);
+scanf(" %9[^\n]", valor);
 getchar();
+tam=strlen(valor);
+if (!validar_dinheiro(valor, tam)){
+  printf("Valor inserido esta incorreto.\n");
+}
+}
+while (!validar_dinheiro(valor, tam));
+
+
+ser->valor = atof(valor);
+
 
 printf("Informe o Tempo Gasto do Servico: ");
 scanf(" %9[^\n]", ser->tempo);
@@ -95,7 +105,7 @@ gravaServico(ser);
 free(ser);
 
 printf("Servico Cadastrado com Sucesso.!");
-printf("Pressione qualquer tecla para sair.... ");
+printf("\n Pressione qualquer tecla para sair.... ");
 getchar();
 }
 
@@ -106,6 +116,7 @@ FILE* fp;
 Servicos* ser;
 int achou;
 char id_busca[10];
+int id;
 fp = fopen("servicos.dat", "rb");
 
 if (fp == NULL) 
@@ -122,11 +133,13 @@ printf(" | ========================================================= | \n");
 printf("\n = Buscar Servico  = \n"); 
 printf("Informe ID do Servico: "); 
 scanf(" %9[^\n]", id_busca);
+getchar();
+id = atoi(id_busca);
 ser = (Servicos*) malloc(sizeof(Servicos));
 achou = 0;
 while((!achou) && (fread(ser,sizeof(Servicos), 1, fp))) 
   {
-    if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status != 'x'))
+    if ((ser->id_servico==id)  && (ser->status != 'x'))
       {
       achou =1;
       }
@@ -148,12 +161,15 @@ getchar();
 
 void atualizarservico(void)
 {
+  char valor[10];
+  int tam;
 system ( " clear||cls " );
 FILE* fp;
 Servicos* ser;
 int achou;
 char resp;
 char id_busca[10];
+int id;
 ser = (Servicos*) malloc(sizeof(Servicos));
 achou = 0;
 fp = fopen("servicos.dat", "r+b");
@@ -171,8 +187,9 @@ if (fp == NULL)
   printf("Digite o ID do Serviço Cadastrado:");
   scanf("%s", id_busca);
   getchar();
+  id = atoi(id_busca);
 while((!achou) && (fread(ser, sizeof(Servicos), 1, fp))){
-  if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status == 'a')){
+  if ((ser->id_servico==id) && (ser->status == 'a')){
     achou = 1;
   }
 }
@@ -184,9 +201,16 @@ scanf("%c", &resp);
 getchar();
 if (resp == 's' || resp == 'S')
   { 
-    printf("Informe o Novo Valor Do Serviço: ");
-    scanf(" %9[^\n]", ser->valor);
-    getchar();    
+    do{
+        printf("Informe o Novo Valor do Servico: ");
+        scanf(" %9[^\n]", valor);
+        getchar();
+        tam=strlen(valor);
+    } while (!validar_dinheiro(valor, tam));
+
+
+ser->valor = atof(valor);
+       
     printf("Informe o Tempo Que Estima-se Gastar neste Serviço:");
     scanf(" %9[^\n]", ser->tempo);
     getchar();
@@ -220,6 +244,7 @@ Servicos* ser;
 int achou;
 char resp;
 char id_busca[10];
+int id;
 fp = fopen("servicos.dat", "r+b");
 
   if (fp == NULL)
@@ -236,9 +261,10 @@ fp = fopen("servicos.dat", "r+b");
   printf("Informe o ID do Servico que Você quer Excluir:");
   scanf("%s", id_busca);
   getchar();
+   id= atoi(id_busca);
   achou=0;
   while ((!achou) && (fread(ser, sizeof(Servicos), 1, fp))){
-  if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status == 'a'))
+  if ((ser->id_servico==id) && (ser->status == 'a'))
     {
       achou = 1;
     }
@@ -255,7 +281,6 @@ fp = fopen("servicos.dat", "r+b");
       fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
       fwrite(ser, sizeof(Servicos), 1, fp);
       printf("\n Serviço Excluido com Sucesso!");
-      gravaServico(ser);
       printf("Pressione qualquer tecla para sair... ");
       getchar();
       }
@@ -288,12 +313,11 @@ fclose(fp);
 }
 
 void exibeservico(Servicos* ser){
-  system("clear||cls");
   {
     printf("\n= = = Serviço Cadastrado = = =\n");
     printf("Nome do Serviço: %s\n", ser->nome);
-    printf("ID do Serviço: %s\n", ser->id_servico);
-    printf("Valor do Serviço: %s\n", ser->valor);
+    printf("ID do Serviço: %d\n", ser->id_servico);
+    printf("Valor do Serviço: %.2f\n", ser->valor);
     printf("Tempo Estimado Para Realização do Serviço: %s\n", ser->tempo);
     printf("Status:%c\n", ser->status);  
   }
@@ -330,6 +354,8 @@ getchar();
 getchar();
 }
 int buscaservico_file(char*id_busca){
+int id=atoi(id_busca);
+
 system ( " clear||cls " );
 FILE* fp;
 Servicos* ser;
@@ -350,7 +376,7 @@ int achou;
   ser = (Servicos*) malloc(sizeof(Servicos));
   achou = 0;
   while((!achou) && (fread(ser,sizeof(Servicos), 1, fp))) {
-    if ((strcmp(ser->id_servico, id_busca) == 0) && (ser->status != 'x'))
+   if ((ser->id_servico==id) && (ser->status == 'a'))
     {
       achou =1;
     }
@@ -366,4 +392,60 @@ if (achou) {
     free(ser);
     return 0;
 }
+}
+
+int idServico(void)
+{
+    Servicos *ser;
+    ser = (Servicos *)malloc(sizeof(Servicos));
+    FILE *fp;
+    fp = fopen("servicos.dat", "rb");
+    if (fp == NULL)
+    {
+        return 1;
+    }
+
+    else
+    {
+        fseek(fp, (-1) * sizeof(Servicos), SEEK_END);
+        fread(ser, sizeof(Servicos), 1, fp);
+        return ser->id_servico + 1;
+    }
+}
+
+//Credits by Lucas And Tallys 
+int validar_dinheiro(char dinheiro[], int tam)
+
+{
+
+    if (dinheiro[tam - 3] != '.')
+    {
+        return 0;
+    }
+    else
+    {
+
+        for (int i = 0; i <= (tam - 1); i++)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+
+                if ((j == 10) && (dinheiro[i] != decimais[j]))
+                {
+                    return 0;
+                }
+                else if (dinheiro[i] == decimais[j])
+                {
+                    break;
+                }
+                else if (i == (tam - 3))
+                {
+
+                    break;
+                }
+            }
+        }
+    }
+
+    return 1;
 }

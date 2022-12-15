@@ -2,8 +2,8 @@ typedef struct servicos Servicos;
 
 struct servicos {
   char nome[20];
-  char id_servico[4];
-  char valor[15];
+  int id_servico;
+  float valor;
   char tempo[20];
   char status;
 };
@@ -18,3 +18,5 @@ void gravaServico(Servicos*);
 void exibeservico(Servicos* ser);
 void listaServicos(void);
 int buscaservico_file(char*);
+int idServico(void);
+int validar_dinheiro(char* dinheiro, int tam);
