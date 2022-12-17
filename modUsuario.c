@@ -383,6 +383,8 @@ return NULL;
 }
 
 Usuario* usuario_buscadois(char* cpf){  
+if (access("arqCliente.dat", F_OK) != -1)
+{
 FILE* fp;
 Usuario* usu;
 usu = (Usuario*)malloc(sizeof(Usuario));
@@ -401,6 +403,7 @@ if ((strcmp(usu->cpf, cpf) == 0) && (usu->status != 'x')){
   }
 }
 fclose(fp);
+}
 return NULL;
 }
 
