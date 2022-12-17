@@ -60,6 +60,8 @@ char menu_animal(void) {
 }
 
 void cadastraranimal(void){
+char peso[10];
+int tam;
 Animal* pet;
 pet = (Animal*) malloc(sizeof(Animal));
 Usuario* usu;
@@ -103,6 +105,18 @@ do
     getchar();
 }
 while (!validaPalavra(pet->raca));
+do{
+printf("Informe o Peso do Animal: ");
+scanf(" %9[^\n]", peso);
+getchar();
+tam=strlen(peso);
+if (!validar_peso(peso, tam)){
+  printf("Peso inserido esta incorreto com a validacao.\n");
+}
+}
+while (!validar_peso(peso, tam));
+pet->peso = atof(peso);
+
 pet->id_animal=idAnimal();
 printf("Informe o Sexo do Animal (M/F): ");
 scanf("%c", &pet->sexo);
@@ -159,6 +173,8 @@ getchar();
 }
 
 void editapet(void){
+char peso[10];
+int tam;
 system ( " clear||cls " );
 FILE* fp;
 Animal* pet;
@@ -203,7 +219,7 @@ if (resp == 's' || resp == 'S')
 {
     do
     {
-        printf("Informe o Nome do Animal: ");
+        printf("Informe o Novo Nome do Animal: ");
         scanf(" %19[^\n]", pet->animal);
         getchar();        
     }
@@ -219,6 +235,17 @@ if (resp == 's' || resp == 'S')
     printf("Informe o Sexo do Animal (M/F): ");
     scanf("%c", &pet->sexo);
     getchar();
+do{
+            printf("Informe o Novo Peso do Animal: ");
+            scanf(" %9[^\n]", peso);
+            getchar();
+            tam=strlen(peso);
+        if (!validar_peso(peso, tam)){
+            printf("Peso inserido esta incorreto com a Validacao.\n");
+}
+}
+while (!validar_peso(peso, tam));
+    pet->peso = atof(peso);
     pet->status = 'a';
     fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
     fwrite(pet, sizeof(Animal), 1, fp);
@@ -236,7 +263,7 @@ if (resp == 's' || resp == 'S')
 }
 else
 {
-    printf("usuario não encontrado!\n");
+    printf("usuario ou Pet não encontrado!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
 }
@@ -356,6 +383,7 @@ void exibepet(Animal* pet)
         printf("Raça do Pet: %s\n", pet->raca);
         printf("ID Único do Pet:%d\n", pet->id_animal);
         printf("Sexo do Animal:%c\n", pet->sexo);
+        printf("Peso do Animal: %.2f\n", pet->peso);
         printf("Status:%c\n", pet->status);
     }
 }

@@ -7,6 +7,7 @@ struct animal {
   char animal[20];
   char cpf[20];
   char raca[20];
+  float peso;
   int id_animal;
   char sexo;
   char status;
