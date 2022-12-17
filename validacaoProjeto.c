@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "validacaoProjeto.h"
+char numeros[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
 int isDigit(char *string){
   int i = 0;
@@ -174,4 +175,41 @@ char* cpf_busca(void){
     getchar();
     
     return cpf_busca_dig;
+}
+
+ 
+int validar_peso(char peso[], int tam)
+
+{
+
+    if (peso[tam - 3] != '.')
+    {
+        return 0;
+    }
+    else
+    {
+
+        for (int i = 0; i <= (tam - 1); i++)
+        {
+            for (int j = 0; j <= 10; j++)
+            {
+
+                if ((j == 10) && (peso[i] != numeros[j]))
+                {
+                    return 0;
+                }
+                else if (peso[i] == numeros[j])
+                {
+                    break;
+                }
+                else if (i == (tam - 3))
+                {
+
+                    break;
+                }
+            }
+        }
+    }
+
+    return 1;
 }

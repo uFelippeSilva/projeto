@@ -7,3 +7,4 @@ int validaTelefone(char *telefone);
 int isDigit(char *string);
 int validaHora(int, int);
 char* cpf_busca(void);
+int validar_peso(char* peso, int tam);
