@@ -3,7 +3,7 @@
 typedef struct horario Horario;
 struct horario {
   char cpf_busca[20];
-  char id_animal[10];
+  int id_animal;
   char id_servico[4];
   int dd;
   int mm;

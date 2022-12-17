@@ -99,9 +99,7 @@ do
     getchar();
 }
 while (!validaPalavra(pet->raca));
-printf("Informe o Código único do Animal: ");
-scanf(" %9[^\n]", pet->codigo);
-getchar();
+pet->id_animal=idAnimal();
 printf("Informe o Sexo do Animal (M/F): ");
 scanf("%c", &pet->sexo);
 getchar();
@@ -120,6 +118,7 @@ Animal* pet;
 int achou;
 char cpf_busca[20];
 char id_pet[10];
+int id;
 fp = fopen("animais.dat", "rb");
 if (fp == NULL){
     printf("Ops! Erro na abertura do arquivo!\n");
@@ -129,13 +128,14 @@ printf("\n = Buscar PET = \n");
 printf("Informe CPF Do Dono Do Animal: "); 
 scanf(" %19[^\n]", cpf_busca);
 getchar();
-printf("Informe Codigo do Animal:");
+printf("Informe ID do Animal:");
 scanf(" %9[^\n]", id_pet);
 getchar();
+id=atoi(id_pet);
 pet = (Animal*) malloc(sizeof(Animal));
 achou = 0;
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
-    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((pet->id_animal==id) &&(pet->status =='a')))
     {
         achou=1;
     }
@@ -162,6 +162,7 @@ int achou;
 char resp;
 char cpf_busca[20];
 char id_pet[10];
+int id;
 pet = (Animal*) malloc(sizeof(Animal));
 achou=0;
 fp= fopen("animais.dat","r+b");
@@ -180,9 +181,10 @@ scanf("%s", cpf_busca);
 getchar();
 printf("Informe O ID Único do Animal Cadastrado:");
 scanf("%s", id_pet);
+id= atoi(id_pet);
 getchar();
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
-if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
+if ((strcmp(pet->cpf, cpf_busca) == 0) && ((pet->id_animal==id) &&(pet->status =='a')))
     {
         achou=1;
     }
@@ -204,22 +206,12 @@ if (resp == 's' || resp == 'S')
     while(!validaPalavra(pet->animal)); 
     do
     {
-        printf("Informe o CPF do Dono do Animal: ");
-        scanf(" %20[^\n]", pet->cpf);
-        getchar();       
-    }
-    while (!validaCpf(pet->cpf));
-    do
-    {
         printf("Informe A Raça do Animal: ");
         scanf(" %19[^\n]", pet->raca);
         getchar();    
     }
     while (!validaPalavra(pet->raca));
     
-    printf("Informe o Código Único do Animal: ");
-    scanf("%s", pet->codigo);
-    getchar();
     printf("Informe o Sexo do Animal (M/F): ");
     scanf("%c", &pet->sexo);
     getchar();
@@ -227,7 +219,6 @@ if (resp == 's' || resp == 'S')
     fseek(fp, (-1)*sizeof(Animal), SEEK_CUR);
     fwrite(pet, sizeof(Animal), 1, fp);
     printf("\nPet editado com sucesso!!!\n");
-    gravaPet(pet);
     printf("Pressione qualquer tecla para sair...");
     getchar();
 } 
@@ -256,6 +247,7 @@ int achou;
 char resp;
 char cpf_busca[20];
 char id_pet[10];
+int id;
 fp= fopen("animais.dat","r+b");
 if(fp == NULL)
     {
@@ -274,9 +266,10 @@ getchar();
 printf("Informe ID Único do Animal que Você deseja Excluir:");
 scanf("%s", id_pet);
 getchar();  
+id=atoi(id_pet);
 achou=0;    
 while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
-    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a')))
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((pet->id_animal==id) &&(pet->status =='a')))
     {
         achou=1;
     }
@@ -357,13 +350,13 @@ void exibepet(Animal* pet)
         printf("Nome do Pet: %s\n", pet->animal);
         printf("CPF do Dono do Pet: %s\n", pet->cpf);
         printf("Raça do Pet: %s\n", pet->raca);
-        printf("ID Único do Pet:%s\n", pet->codigo);
+        printf("ID Único do Pet:%d\n", pet->id_animal);
         printf("Sexo do Animal:%c\n", pet->sexo);
         printf("Status:%c\n", pet->status);
     }
 }
 
-int busca_petfile(char* cpf_busca, char* id_pet){
+int busca_petfile(char* cpf_busca, int id){
 system ( " clear||cls " );
 FILE* fp;
 Animal* pet;
@@ -376,7 +369,7 @@ if (fp == NULL) {
 pet = (Animal*) malloc(sizeof(Animal));
 achou = 0;
  while ((!achou) && (fread(pet, sizeof(Animal), 1, fp))){
-    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((strcmp(pet->codigo,id_pet)==0) &&(pet->status =='a'))){
+    if ((strcmp(pet->cpf, cpf_busca) == 0) && ((pet->id_animal==id) &&(pet->status =='a'))){
         achou=1;
     }
  }
@@ -446,4 +439,24 @@ fclose(fp);
 free(pet);
 getchar();
 getchar();
+}
+
+
+int idAnimal(void)
+{
+    Animal *pet;
+    pet = (Animal *)malloc(sizeof(Animal));
+    FILE *fp;
+    fp = fopen("animais.dat", "rb");
+    if (fp == NULL)
+    {
+        return 1;
+    }
+
+    else
+    {
+        fseek(fp, (-1) * sizeof(Animal), SEEK_END);
+        fread(pet, sizeof(Animal), 1, fp);
+        return pet->id_animal + 1;
+    }
 }

@@ -59,6 +59,8 @@ return op;
 void cadastrar_horario(void){
 system("clear||cls");
 Horario* hora;
+char id_animal[10];
+int id;
 hora = (Horario*) malloc(sizeof(Horario)); 
 int a;
 int b;
@@ -68,8 +70,10 @@ do
   scanf(" %19[^\n]", hora->cpf_busca);
   getchar();
   printf(" | Informe o ID do Animal: ");
-  scanf(" %9[^\n]", hora->id_animal);
-  a = busca_petfile(hora->cpf_busca,hora->id_animal );
+  scanf(" %9[^\n]", id_animal);
+  id = atoi(id_animal);
+  hora ->id_animal=id;
+  a = busca_petfile(hora->cpf_busca,id);
 } 
 while (a == 0);
 do
@@ -306,7 +310,7 @@ system("clear||cls");
   {
     printf("\n= = = Consulta Cadastrada = = =\n");
     printf("CPF dono do animal: %s\n", hora->cpf_busca);
-    printf("iD do animal: %s\n", hora->id_animal);
+    printf("iD do animal: %d\n", hora->id_animal);
     printf("Dia da  consulta: %d\n", hora->dd);
     printf("Mês da consulta: %d\n", hora->mm);
     printf("Ano da consulta : %d\n", hora->aa);

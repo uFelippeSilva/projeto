@@ -343,7 +343,6 @@ void listaUsuarios(void) {
   getchar();
 }
 void exibeusuario(Usuario* usu) {
-  system ("clear||cls");
   {
   printf("\n= = = Usuário Cadastrado = = =\n");
   printf("Nome do Usuario: %s\n", usu->nome);
