@@ -218,7 +218,6 @@ ser->valor = atof(valor);
     fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
     fwrite(ser, sizeof(Servicos), 1, fp);
     printf("\n Serviço Editado com Sucesso!!!\n");
-    gravaServico(ser);
     printf("Pressione qualquer tecla para sair... ");
     getchar();
   }
