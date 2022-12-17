@@ -24,3 +24,4 @@ int busca_petfile(char*, int);
 void listaPetsMacho(void);
 void listaPetsFemea(void);
 int idAnimal(void);
+void ListaPetCPF(void);

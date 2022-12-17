@@ -20,6 +20,9 @@ void modulo_animal(void) {
             case '4': 	excluipet();
                         break;
             case '5':   listaPets();
+                        break;
+            case '6':   ListaPetCPF();
+                        break;
         } 		
     } while (op != '0');
 }
@@ -41,6 +44,7 @@ char menu_animal(void) {
     printf("///           |           3. Editar Animal                                  |   ///\n");
     printf("///           |           4. Deletar Animal                                 |   ///\n");
     printf("///           |           5. Listar Todos Pet                               |   ///\n");
+    printf("///           |           6. Listar Pets Por CPF                            |   ///\n");
     printf("///           |           0. Voltar Menu Principal                          |   ///\n");
     printf("///           |                                                             |   ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -459,4 +463,33 @@ int idAnimal(void)
         fread(pet, sizeof(Animal), 1, fp);
         return pet->id_animal + 1;
     }
+}
+
+void ListaPetCPF(void){
+system ( " clear||cls " );
+FILE* fp;
+Animal* pet;
+char cpf_busca[20];
+fp = fopen("animais.dat", "rb");
+if (fp == NULL){
+    printf("Ops! Erro na abertura do arquivo!\n");
+    exit(1);
+}
+printf("\n = Buscar PET = \n"); 
+printf("Informe CPF Do Dono Do Animal: "); 
+scanf(" %19[^\n]", cpf_busca);
+getchar();
+pet = (Animal*) malloc(sizeof(Animal));
+while  (fread(pet, sizeof(Animal), 1, fp)){
+    if ((strcmp(pet->cpf, cpf_busca) == 0))
+    {
+        exibepet(pet);
+    }
+}
+
+fclose(fp);
+free(pet);
+printf("Pressione qualquer tecla para sair.... ");
+getchar();
+getchar();
 }
