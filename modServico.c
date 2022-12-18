@@ -39,11 +39,11 @@ printf("////////////////////////////////////////////////////////////////////////
 printf("///                                                                             ///\n");
 printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
 printf("///           |                                                             |   ///\n");
-printf("///           |           1. Cadastrar Servico                              |   ///\n");
-printf("///           |           2. Pesquisar Servico                              |   ///\n");
-printf("///           |           3. Editar Servico                                 |   ///\n");
-printf("///           |           4. Deletar Servico                                |   ///\n");
-printf("///           |           5. Servicos Prestados                             |   ///\n");
+printf("///           |           1. Cadastrar Serviço                              |   ///\n");
+printf("///           |           2. Pesquisar Serviço                              |   ///\n");
+printf("///           |           3. Editar Serviço                                 |   ///\n");
+printf("///           |           4. Deletar Serviço                                |   ///\n");
+printf("///           |           5. Serviços Prestados                             |   ///\n");
 printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
 printf("///           |                                                             |   ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -58,45 +58,42 @@ sleep(1);
 
 return op;
 }
-void cadastraservico(void)
-{
-  char valor[10];
-  int tam;
+void cadastraservico(void){
+char valor[10];
+int tam;
 
 system ( " clear||cls " );
 Servicos* ser;
 ser = (Servicos*) malloc(sizeof(Servicos));
 
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" |                   Cadastrar Servico                       | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                   Cadastrar Serviço                       | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
 do
 {
-  printf("Informe o nome do Servico: ");
+  printf("Informe o nome do Serviço: ");
   scanf(" %19[^\n]", ser->nome);
   getchar();     
-}
-while (!validaPalavra(ser->nome));
+}while(!validaPalavra(ser->nome));
 
 ser->id_servico=idServico();
 do{
-printf("Informe o Valor do Servico: ");
+printf("Informe o Valor do Serviço: ");
 scanf(" %9[^\n]", valor);
 getchar();
 tam=strlen(valor);
-if (!validar_dinheiro(valor, tam)){
-  printf("Valor inserido esta incorreto.\n");
-}
-}
-while (!validar_dinheiro(valor, tam));
+  if (!validar_dinheiro(valor, tam)){
+    printf("Valor inserido esta incorreto.\n");
+  }
+}while (!validar_dinheiro(valor, tam));
 
 
 ser->valor = atof(valor);
 
 
-printf("Informe o Tempo Gasto do Servico: ");
+printf("Informe o Tempo Gasto do Serviço: ");
 scanf(" %9[^\n]", ser->tempo);
 getchar();
 
@@ -104,7 +101,7 @@ ser->status = 'a';
 gravaServico(ser);
 free(ser);
 
-printf("Servico Cadastrado com Sucesso.!");
+printf("Serviço Cadastrado com Sucesso.!");
 printf("\n Pressione qualquer tecla para sair.... ");
 getchar();
 }
@@ -125,32 +122,31 @@ if (fp == NULL)
     exit(1);
   }
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" |                   Buscar Servico                          | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                   Buscar Serviço                          | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
   
-printf("\n = Buscar Servico  = \n"); 
-printf("Informe ID do Servico: "); 
+printf("\n = Buscar Serviço  = \n"); 
+printf("Informe ID do Serviço: "); 
 scanf(" %9[^\n]", id_busca);
 getchar();
 id = atoi(id_busca);
 ser = (Servicos*) malloc(sizeof(Servicos));
 achou = 0;
 while((!achou) && (fread(ser,sizeof(Servicos), 1, fp))) 
-  {
-    if ((ser->id_servico==id)  && (ser->status != 'x'))
-      {
-      achou =1;
-      }
+{
+  if ((ser->id_servico==id)  && (ser->status != 'x')){
+    achou =1;
   }
+}
 if (achou)
   {
   exibeservico(ser);
   }
 else 
   {
-    printf("Os dados do usuario nao foram encontrados\n");
+    printf("Os dados do usuário não foram encontrados\n");
   }
 fclose(fp);
 free(ser);
@@ -161,8 +157,8 @@ getchar();
 
 void atualizarservico(void)
 {
-  char valor[10];
-  int tam;
+char valor[10];
+int tam;
 system ( " clear||cls " );
 FILE* fp;
 Servicos* ser;
@@ -200,38 +196,34 @@ printf(" Deseja realmente editar este Serviço? [s/n] ");
 scanf("%c", &resp);
 getchar();
 if (resp == 's' || resp == 'S')
-  { 
-    do{
+    { 
+      do{
         printf("Informe o Novo Valor do Servico: ");
         scanf(" %9[^\n]", valor);
         getchar();
         tam=strlen(valor);
-    } while (!validar_dinheiro(valor, tam));
-
-
-ser->valor = atof(valor);
-       
-    printf("Informe o Tempo Que Estima-se Gastar neste Serviço:");
-    scanf(" %9[^\n]", ser->tempo);
-    getchar();
-    ser->status = 'a';
-    fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
-    fwrite(ser, sizeof(Servicos), 1, fp);
-    printf("\n Serviço Editado com Sucesso!!!\n");
-    printf("Pressione qualquer tecla para sair... ");
-    getchar();
-  }
-  else
-    {
-      printf("Os Dados Não Foram Alterados!\n");
-      printf("Pressione qualquer tecla para sair...");
+      } while (!validar_dinheiro(valor, tam));
+    ser->valor = atof(valor);     
+      printf("Informe o Tempo Que Estima-se Gastar neste Serviço:");
+      scanf(" %9[^\n]", ser->tempo);
+      getchar();
+      ser->status = 'a';
+      fseek(fp, (-1)*sizeof(Servicos), SEEK_CUR);
+      fwrite(ser, sizeof(Servicos), 1, fp);
+      printf("\n Serviço Editado com Sucesso!!!\n");
+      printf("Pressione qualquer tecla para sair... ");
       getchar();
     }
-    } else {
-    printf("Serviço Não encontrado!\n");
+  else{
+    printf("Os Dados Não Foram Alterados!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
   }
+}else{
+  printf("Serviço Não encontrado!\n");
+  printf("Pressione qualquer tecla para sair...");
+  getchar();
+}
 free(ser);
 fclose(fp);
 }     
@@ -257,7 +249,7 @@ fp = fopen("servicos.dat", "r+b");
   printf(" |                        Excluir Serviço                         | \n");
   printf(" |                                                                | \n");
   printf(" | ============================================================== | \n");
-  printf("Informe o ID do Servico que Você quer Excluir:");
+  printf("Informe o ID do Serviço que Você quer Excluir:");
   scanf("%s", id_busca);
   getchar();
    id= atoi(id_busca);

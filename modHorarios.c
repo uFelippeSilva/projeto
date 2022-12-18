@@ -71,19 +71,18 @@ do
   getchar();
   printf(" | Informe o ID do Animal: ");
   scanf(" %9[^\n]", id_animal);
+  getchar();
   id = atoi(id_animal);
   hora ->id_animal=id;
   a = busca_petfile(hora->cpf_busca,id);
-} 
-while (a == 0);
+}while (a == 0);
 do
 {
   printf(" | Informe o ID do Serviço: ");
   scanf(" %4[^\n]", hora->id_servico);
   getchar();
   b = buscaservico_file(hora->id_servico);
-} 
-while (b ==0);
+} while (b ==0);
 do
 {
   printf(" Digite o dia da Consulta: ");
@@ -95,8 +94,7 @@ do
   printf(" Digite o Ano da Consulta: ");
   scanf("%d", &hora->aa);
   getchar();  
-}
-while(!validaData(hora->dd, hora->mm, hora->aa));
+}while(!validaData(hora->dd, hora->mm, hora->aa));
 do
 {
   printf(" Digite a Hora da Consulta: ");
@@ -105,8 +103,7 @@ do
   printf(" Digite o Minuto da Consulta: ");
   scanf("%d", &hora->min);
   getchar();
-}
-while(!validaHora(hora->hora, hora->min));
+}while(!validaHora(hora->hora, hora->min));
 printf("Informe id da consulta 6 Digitos: ");
 scanf(" %6[^\n]", hora->id_consulta);
 getchar();
@@ -144,10 +141,9 @@ scanf("%s", id_busca);
 getchar();
 while((!achou) && (fread(hora, sizeof(Horario), 1, fp)))
 {
-    if((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status == 'a'))
-    {
-      achou = 1;
-    }
+  if((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status == 'a')){
+    achou = 1;
+  }
 }
 if(achou)
 {
@@ -204,11 +200,10 @@ Horario* hora;
 int achou;
 char id_busca[7];
 fp = fopen("consultas.dat", "rb");
-if (fp == NULL)
-  {
-    printf("Ops! Erro na abertura do arquivo!\n");
-    exit(1);
-  }
+if (fp == NULL){
+  printf("Ops! Erro na abertura do arquivo!\n");
+  exit(1);
+}
 printf("\n = Buscar Consulta = \n"); 
 printf("Informe ID da consulta: "); 
 scanf(" %6[^\n]", id_busca);
@@ -217,17 +212,14 @@ hora = (Horario*) malloc(sizeof(Horario));
 achou = 0;
 while((!achou) && (fread(hora,sizeof(Horario), 1, fp))) 
 {
-  if ((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status != 'x'))
-  {
+  if ((strcmp(hora->id_consulta, id_busca) == 0) && (hora->status != 'x')){
     achou =1;
   }
 }
-if (achou)
-{
+if (achou){
   exibeconsulta(hora);
 }
-else
-{
+else{
   printf("Os Dados da Consulta Não Foram Encontrados\n");
 }
 fclose(fp);
@@ -244,8 +236,7 @@ int achou;
 char resp;
 char id_busca[7];
 fp = fopen("consultas.dat", "r+b");
-if (fp == NULL)
-{
+if (fp == NULL){
   printf("Ops! Erro na abertura do arquivo!\n");
   exit(1);
 }
@@ -306,7 +297,6 @@ fclose(fp);
 }
 
 void exibeconsulta(Horario* hora){
-system("clear||cls");
   {
     printf("\n= = = Consulta Cadastrada = = =\n");
     printf("CPF dono do animal: %s\n", hora->cpf_busca);
