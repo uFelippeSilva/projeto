@@ -36,11 +36,11 @@ printf("////////////////////////////////////////////////////////////////////////
 printf("///                                                                             ///\n");
 printf("///            = = = = sistema de agendamento de consulta para pets = = = =     ///\n");
 printf("///           |                                                             |   ///\n");
-printf("///           |           1. Cadastrar Usuario                              |   ///\n");
-printf("///           |           2. Procurar Usuario                               |   ///\n");
-printf("///           |           3. Editar Usuario                                 |   ///\n");
-printf("///           |           4. Deletar Usuario                                |   ///\n");
-printf("///           |           5. Listar Usuarios                                |   ///\n");
+printf("///           |           1. Cadastrar Usuário                              |   ///\n");
+printf("///           |           2. Procurar Usuário                               |   ///\n");
+printf("///           |           3. Editar Usuário                                 |   ///\n");
+printf("///           |           4. Deletar Usuário                                |   ///\n");
+printf("///           |           5. Listar Usuários                                |   ///\n");
 printf("///           |           0. Voltar Menu Princpal                           |   ///\n");
 printf("///           |                                                             |   ///\n");
 printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =    ///\n");
@@ -50,7 +50,32 @@ printf("escolha oque deseja:\n");
 scanf("%c",&op);
 getchar();
 printf("\n");
-printf("\t\t\t<<< ... Loading ... >>>\n");
+system("clear||cls");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///             |>>>>>>>>>>                               |                     ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+sleep(1);
+system("clear||cls");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///             |>>>>>>>>>>>>>>>>>>>>>>>>>>>>>            |                     ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+sleep(1);
+system("clear||cls");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
+printf("///                                                                             ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///             |>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>|                     ///\n");
+printf("///             |-----------------------------------------|                     ///\n");
+printf("///                                                                             ///\n");
+printf("///////////////////////////////////////////////////////////////////////////////////\n");
 sleep(1);
 
 return op;
@@ -66,19 +91,19 @@ system ( " clear||cls " );
 Usuario* usu;
 usu = (Usuario*) malloc(sizeof(Usuario));
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" |                   Cadastro Usuario                        | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                   Cadastro Usuário                        | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
 do
   {
-    printf("Informe o nome do usuario:");
+    printf("Informe o nome do usuário:");
     scanf(" %50[^\n]", usu->nome);
     getchar();     
   }while (!validaPalavra(usu->nome));
 do
   {
-    printf("Informe o cpf do usuario: ");
+    printf("Informe o cpf do usuário: ");
     scanf(" %19[^\n]", usu->cpf);
     getchar();   
   }while (!validaCpf(usu->cpf));
@@ -87,13 +112,13 @@ do
 
   if (busca==NULL){
     do{
-      printf(" Digite o dia que voce nasceu: ");
+      printf("Digite o dia que você nasceu: ");
       scanf(" %9[^\n]",dia);
       getchar();
-      printf(" Digite o seu mes de nascimento: ");
+      printf("Digite o seu mês de nascimento: ");
       scanf(" %9[^\n]",mes);
       getchar();
-      printf(" Digite o seu ano de nascimento: ");
+      printf("Digite o seu ano de nascimento: ");
       scanf(" %9[^\n]",ano);
       getchar();  
 
@@ -108,7 +133,7 @@ do
     } while(!a);
 
       do{
-        printf("Informe o Telefone do usuario DDD Obrigatorio.Ex(84)923456789: ");
+        printf("Informe o Telefone do usuário DDD Obrigatorio.Ex(84)923456789: ");
         scanf(" %14[^\n]", usu->telefone);
         getchar();    
       }while(!validaTelefone(usu->telefone));
@@ -118,7 +143,7 @@ do
   }
 
   else {
-    printf("\n Ja existe um Usuario com este cpf.");
+    printf("\n Ja existe um Usuário com este cpf.");
   }
 free(busca);
 free(usu);
@@ -151,7 +176,7 @@ if (achou){
   exibeusuario(usu);
 }
 else{
-  printf("Os dados do usuario nao foram encontrados\n");
+  printf("Os dados do usuário não foram encontrados\n");
 }
 fclose(fp);
 free(usu);
@@ -174,15 +199,15 @@ achou = 0;
 fp = fopen("usuarios.dat", "r+b");
 if (fp == NULL) {
   printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-  printf("Nao e possivel continuar o programa...\n");
+  printf("Não é possível continuar o programa...\n");
   exit(1);
 }
 printf(" | ========================================================= | \n");
-printf(" | --------------------------------------------------------- | \n");
-printf(" | ------------------- Atualizar usuario ------------------- | \n");
-printf(" | --------------------------------------------------------- | \n");
+printf(" |                                                           | \n");
+printf(" |                     Atualizar usuário                     | \n");
+printf(" |                                                           | \n");
 printf(" | ========================================================= | \n");
-printf("Digite o CPF do usuario cadastrado: ");
+printf("Digite o CPF do usuário cadastrado: ");
 scanf("%s", cpf_busca);
 getchar();
 while((!achou) && (fread(usu, sizeof(Usuario), 1, fp))){
@@ -193,23 +218,23 @@ while((!achou) && (fread(usu, sizeof(Usuario), 1, fp))){
 if (achou)
   {
     exibeusuario(usu);
-    printf(" Deseja realmente editar este usuario? [s/n] ");
+    printf(" Deseja realmente editar este usuário? [s/n] ");
     scanf("%c", &resp);
     getchar();
     if (resp == 's' || resp == 'S')
     {
       do
       {
-        printf("Informe o nome do usuario: ");
+        printf("Informe o nome do usuário: ");
         scanf(" %50[^\n]", usu->nome);
         getchar();   
       } while (!validaPalavra(usu->nome));
       do 
       {
-        printf("Digite o dia que voce nasceu: ");
+        printf("Digite o dia que você nasceu: ");
         scanf(" %9[^\n]",dia);
         getchar();
-        printf("Digite o seu mes de nascimento: ");
+        printf("Digite o seu mês de nascimento: ");
         scanf(" %9[^\n]",mes);
         getchar();
         printf("Digite o seu ano de nascimento: ");
@@ -222,25 +247,25 @@ if (achou)
       } while(!validaData(usu->dd, usu->mm, usu->aa));
       do
       {
-        printf("Informe o Telefone do usuario: ");
+        printf("Informe o Telefone do usuário: ");
         scanf(" %14[^\n]", usu->telefone);
         getchar();  
       }while (!validaTelefone(usu->telefone));
         usu->status = 'a'; // a = Ativo. x = Inativo
         fseek(fp, (-1)*sizeof(Usuario), SEEK_CUR);
         fwrite(usu, sizeof(Usuario), 1, fp);
-        printf("\nUsuario editado com sucesso!!!\n");
+        printf("\nUsuário editado com sucesso!!!\n");
         printf("Pressione qualquer tecla para sair... ");
         getchar();
     }
   else
     {
-      printf("Os dados nao foram alterados!\n");
+      printf("Os dados não foram alterados!\n");
       printf("Pressione qualquer tecla para sair...");
       getchar();
     }
     } else {
-    printf("usuario nao encontrado!\n");
+    printf("usuário não encontrado!\n");
     printf("Pressione qualquer tecla para sair...");
     getchar();
   }
@@ -268,7 +293,7 @@ void deletarusuario(void){
     printf(" |                        Excluir Usuário                         | \n");
     printf(" |                                                                | \n");
     printf(" | ============================================================== | \n");
-    printf("Informe o CPF do Usuáario que você quer excluir: ");
+    printf("Informe o CPF do Usuário que você quer excluir: ");
     scanf("%s", cpf_busca);
     getchar();
     achou=0;
@@ -289,7 +314,7 @@ void deletarusuario(void){
             printf("Pressione qualquer tecla para sair... ");
             getchar();
         }else{
-            printf("\n  Tudo bem, os dados nao foram alterados!");
+            printf("\n  Tudo bem, os dados não foram alterados!");
             getchar();
         }
         }else{
@@ -345,12 +370,12 @@ void listaUsuarios(void) {
 void exibeusuario(Usuario* usu) {
   {
   printf("\n= = = Usuário Cadastrado = = =\n");
-  printf("Nome do Usuario: %s\n", usu->nome);
-  printf("CPF do Usuario: %s\n", usu->cpf);
+  printf("Nome do Usuário: %s\n", usu->nome);
+  printf("CPF do Usuário: %s\n", usu->cpf);
   printf("Dia Que Nasceu: %d\n", usu->dd);
   printf("Mês Que Nasceu: %d\n", usu->mm);
   printf("Ano Que Nasceu: %d\n", usu->aa);
-  printf("Telefone do Usuario: %s\n", usu->telefone);
+  printf("Telefone do Usuário: %s\n", usu->telefone);
   printf("Status:%c\n", usu->status);
   }
 }
